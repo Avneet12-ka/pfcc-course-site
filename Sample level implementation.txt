@@ -1,0 +1,52 @@
+// Level 2 configuration
+{
+  id: 2,
+  title: "Home Visit Scenario",
+  description: "You are visiting Fatima, a 45-year-old woman with type 2 diabetes, in her home for a follow-up assessment.",
+  scenario: {
+    context: "Fatima has been struggling with medication adherence. She lives with her husband and two teenage children.",
+    patientBackground: {
+      // Patient details
+    },
+    stages: [
+      {
+        id: "introduction",
+        prompt: "How do you begin your conversation with Fatima?",
+        choices: [
+          {
+            id: "medical",
+            text: "Let's check your blood glucose readings from the past week.",
+            feedback: "This approach jumps straight to clinical data without establishing rapport or understanding Fatima's perspective.",
+            pccScore: 1,
+            nextStage: "living_situation"
+          },
+          {
+            id: "open",
+            text: "How have things been going for you since our last visit?",
+            feedback: "This open-ended question allows Fatima to share what's most important to her.",
+            pccScore: 3,
+            nextStage: "living_situation"
+          },
+          {
+            id: "social",
+            text: "How are you and your family doing today?",
+            feedback: "This acknowledges Fatima's family context but remains somewhat general.",
+            pccScore: 2,
+            nextStage: "living_situation"
+          }
+        ]
+      },
+      // More scenario stages...
+    ],
+    reflectionPrompts: [
+      "What did you learn about Fatima's resources and strengths?",
+      "How did your approach influence what information Fatima shared?",
+      "What assumptions did you find yourself making during this interaction?",
+      "How might Fatima's home environment impact her diabetes management?"
+    ]
+  },
+  completion: {
+    minReflectionLength: 150,
+    feedbackText: "You've completed the home visit scenario. Your reflection shows consideration of how listening impacts care planning."
+  }
+}

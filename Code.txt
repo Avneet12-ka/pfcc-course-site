@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient and Family-Centered Care Course</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-blue-700 text-white py-6 px-4 md:px-8">
+        <div class="container mx-auto">
+            <div class="flex flex-wrap justify-between items-center">
+                <h1 class="text-2xl font-bold">Patient and Family-Centered Care</h1>
+                <div class="text-right">
+                    <p class="text-sm">One-Week Intensive Course</p>
+                    <p class="text-sm">Professional Development for Healthcare Providers</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto">
+            <ul class="flex flex-wrap text-sm md:text-base">
+                <li><a href="#home" class="nav-link block px-4 py-3 font-medium hover:text-blue-700 border-b-2 border-transparent hover:border-blue-700 transition-colors">Home</a></li>
+                <li><a href="#lectures" class="nav-link block px-4 py-3 font-medium hover:text-blue-700 border-b-2 border-transparent hover:border-blue-700 transition-colors">Lectures</a></li>
+                <li><a href="#case-studies" class="nav-link block px-4 py-3 font-medium hover:text-blue-700 border-b-2 border-transparent hover:border-blue-700 transition-colors">Case Studies</a></li>
+                <li><a href="#quizzes" class="nav-link block px-4 py-3 font-medium hover:text-blue-700 border-b-2 border-transparent hover:border-blue-700 transition-colors">Quizzes</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- Home Section -->
+        <section id="home" class="mb-16">
+            <div class="flex flex-col md:flex-row gap-8 mb-8">
+                <div class="flex-1">
+                    <h2 class="text-2xl font-bold text-blue-800 mb-4">Welcome to Patient and Family-Centered Care</h2>
+                    <p class="mb-4">This one-week intensive course is designed to provide healthcare professionals with the knowledge and skills needed to implement patient and family-centered care approaches in various healthcare settings.</p>
+                    <p class="mb-4">The course combines theoretical foundations with practical case studies and interactive learning to help you transform your practice.</p>
+                    <div class="mt-6">
+                        <a href="#lectures" class="inline-block px-4 py-2 bg-blue-700 text-white rounded font-medium hover:bg-blue-800 transition-colors">Start Learning</a>
+                        <a href="#enroll" class="inline-block px-4 py-2 border border-blue-700 text-blue-700 rounded font-medium ml-2 hover:bg-blue-50 transition-colors">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-700">
+                        <h3 class="text-xl font-semibold mb-4">Course Highlights</h3>
+                        <p class="flex items-center mb-3"><i class="fas fa-calendar-alt text-blue-700 mr-3"></i> <strong>Duration:</strong> One-week intensive (Monday to Friday)</p>
+                        <p class="flex items-center mb-3"><i class="fas fa-book text-blue-700 mr-3"></i> <strong>5 Lectures:</strong> Comprehensive modules covering all aspects of PFCC</p>
+                        <p class="flex items-center mb-3"><i class="fas fa-user-md text-blue-700 mr-3"></i> <strong>5 Case Studies:</strong> Real-world applications and examples</p>
+                        <p class="flex items-center mb-3"><i class="fas fa-tasks text-blue-700 mr-3"></i> <strong>Interactive Quizzes:</strong> Test your knowledge as you learn</p>
+                        <p class="flex items-center mb-3"><i class="fas fa-certificate text-blue-700 mr-3"></i> <strong>Certificate:</strong> Upon successful completion of the course</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h3 class="text-xl font-bold text-blue-800 mb-4 pb-2 border-b border-blue-100">The Four Core Principles</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+                    <div class="p-4 text-center rounded-lg hover:shadow-md transition-all transform hover:-translate-y-1 border-t-2 border-transparent hover:border-blue-700">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user-shield text-blue-700 text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Dignity and Respect</h4>
+                        <p class="text-sm">Healthcare practitioners listen to and honor patient and family perspectives and choices.</p>
+                    </div>
+                    <div class="p-4 text-center rounded-lg hover:shadow-md transition-all transform hover:-translate-y-1 border-t-2 border-transparent hover:border-blue-700">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-share-alt text-blue-700 text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Information Sharing</h4>
+                        <p class="text-sm">Communicating complete and unbiased information with patients and families in affirming ways.</p>
+                    </div>
+                    <div class="p-4 text-center rounded-lg hover:shadow-md transition-all transform hover:-translate-y-1 border-t-2 border-transparent hover:border-blue-700">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-users text-blue-700 text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Participation</h4>
+                        <p class="text-sm">Patients and families are encouraged and supported in care and decision-making at their chosen level.</p>
+                    </div>
+                    <div class="p-4 text-center rounded-lg hover:shadow-md transition-all transform hover:-translate-y-1 border-t-2 border-transparent hover:border-blue-700">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-hands-helping text-blue-700 text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Collaboration</h4>
+                        <p class="text-sm">Patients, families, and healthcare practitioners collaborate in policy, program development, and care delivery.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h3 class="text-xl font-bold text-blue-800 mb-4">Weekly Schedule</h3>
+                <div class="overflow-auto">
+                    <table class="w-full border-collapse">
+                        <thead class="bg-blue-700 text-white">
+                            <tr>
+                                <th class="border px-4 py-2 text-left">Day</th>
+                                <th class="border px-4 py-2 text-left">Morning Session (9am-12pm)</th>
+                                <th class="border px-4 py-2 text-left">Afternoon Session (1pm-4pm)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="hover:bg-blue-50">
+                                <td class="border px-4 py-2">Monday</td>
+                                <td class="border px-4 py-2">Lecture 1: Foundations of PFCC</td>
+                                <td class="border px-4 py-2">Case Study 1: Bronson Methodist Hospital</td>
+                            </tr>
+                            <tr class="bg-gray-50 hover:bg-blue-50">
+                                <td class="border px-4 py-2">Tuesday</td>
+                                <td class="border px-4 py-2">Lecture 2: Core Principles in Practice</td>
+                                <td class="border px-4 py-2">Case Study 2: Pediatric ICU Family Involvement</td>
+                            </tr>
+                            <tr class="hover:bg-blue-50">
+                                <td class="border px-4 py-2">Wednesday</td>
+                                <td class="border px-4 py-2">Lecture 3: Communication Skills for PFCC</td>
+                                <td class="border px-4 py-2">Case Study 3: NICU Design with Patient/Family Input</td>
+                            </tr>
+                            <tr class="bg-gray-50 hover:bg-blue-50">
+                                <td class="border px-4 py-2">Thursday</td>
+                                <td class="border px-4 py-2">Lecture 4: Building Systems to Support PFCC</td>
+                                <td class="border px-4 py-2">Case Study 4: Emergency Department PFCC Implementation</td>
+                            </tr>
+                            <tr class="hover:bg-blue-50">
+                                <td class="border px-4 py-2">Friday</td>
+                                <td class="border px-4 py-2">Lecture 5: Measuring and Improving PFCC Outcomes</td>
+                                <td class="border px-4 py-2">Case Study 5: Chronic Disease Management Partnerships</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-sm mt-2">* Daily assessment quizzes will be available following each lecture and case study.</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold text-blue-800 mb-4">Learning Outcomes</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+                    <div>
+                        <h4 class="flex items-center font-semibold mb-3">
+                            <i class="fas fa-check-circle text-green-600 mr-2"></i> Knowledge
+                        </h4>
+                        <ul class="ml-6 space-y-2">
+                            <li class="relative pl-5">
+                                <span class="absolute left-0 top-2 w-2 h-2 bg-blue-700 rounded-full"></span>
+                                Define Patient and Family-Centered Care and its importance
+                            </li>
+                            <li class="relative pl-5">
+                                <span class="absolute left-0 top-2 w-2 h-2 bg-blue-700 rounded-full"></span>
+                                Identify the four core principles of PFCC
+                            </li>
+                            <li class="relative pl-5">
+                                <span class="absolute left-0 top-2 w-2 h-2 bg-blue-700 rounded-full"></span>
+                                Explain how PFCC evolved historically in healthcare
+                            </li>
+                            <li class="relative pl-5">
+                                <span class="absolute left-0 top-2 w-2 h-2 bg-blue-700 rounded-full"></span>
+                                Discuss the evidence supporting PFCC implementation
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="flex items-center font-semibold mb-3">
+                            <i class="fas fa-tools text-blue-600 mr-2"></i> Skills
+                        </h4>
+                        <ul class="ml-6 space-y-2">
+                            <li class="relative pl-5">
+                                <span class="absolute left-0 top-2 w-2 h-2 bg-blue-700 rounded-full"></span>
+                                Apply PFCC principles in clinical practice
+                            </li>
+                            <li class="relative pl-5">
+                                <span class="absolute left-0 top-2 w-2 h-2 bg-blue-700 rounded-full"></span>
+                                Develop effective communication strategies
+                            </li>
+                            <li class="relative pl-5">
+                                <span class="absolute left-0 top-2 w-2 h-2 bg-blue-700 rounded-full"></span>
+                                Implement systems that support PFCC
+                            </li>
+                            <li class="relative pl-5">
+                                <span class="absolute left-0 top-2 w-2 h-2 bg-blue-700 rounded-full"></span>
+                                Measure and evaluate PFCC outcomes
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lectures Section -->
+        <section id="lectures" class="mb-16">
+            <h2 class="text-2xl font-bold text-blue-800 mb-4">Course Lectures</h2>
+            <p class="mb-6">Select a lecture to expand its content:</p>
+
+            <!-- Lecture 1 -->
+            <div class="bg-white rounded-lg shadow-md mb-6 overflow-hidden">
+                <button class="w-full text-left p-4 bg-blue-50 flex justify-between items-center font-medium border-l-4 border-blue-700" onclick="toggleContent('lecture1')">
+                    <span>Lecture 1: Foundations of Patient and Family-Centered Care</span>
+                    <i class="fas fa-chevron-down transition-transform" id="lecture1-icon"></i>
+                </button>
+                <div id="lecture1-content" class="hidden p-6">
+                    <div class="mb-6">
+                        <p class="mb-4">This introductory lecture establishes the fundamental principles and historical development of Patient and Family-Centered Care, exploring its evolution and evidence base.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <h4 class="font-semibold mb-2">Learning Objectives</h4>
+                                <ul class="list-disc pl-5 space-y-1">
+                                    <li>Define Patient and Family-Centered Care and its importance in healthcare</li>
+                                    <li>Identify the four core principles of PFCC</li>
+                                    <li>Explain how PFCC evolved historically in healthcare settings</li>
+                                    <li>Discuss the evidence supporting PFCC implementation</li>
+                                    <li>Recognize barriers to implementing PFCC in different settings</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-2">Key Topics</h4>
+                                <ul class="list-disc pl-5 space-y-1">
+                                    <li>Historical development of PFCC</li>
+                                    <li>Evolution from provider-centered to patient-centered models</li>
+                                    <li>Evidence supporting PFCC approaches</li>
+                                    <li>The four core principles of PFCC</li>
+                                    <li>Ethical foundations of PFCC</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-semibold text-blue-800 mt-8 mb-3">What is Patient and Family-Centered Care?</h3>
+                        <p class="mb-4">Patient and Family-Centered Care is an approach to the planning, delivery, and evaluation of healthcare that is grounded in mutually beneficial partnerships among healthcare providers, patients, and families.</p>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-700 my-6">
+                            <h4 class="font-semibold mb-2">Definition by the Institute for Patient and Family-Centered Care:</h4>
+                            <blockquote class="italic">
+                                "An approach to the planning, delivery, and evaluation of health care that is grounded in mutually beneficial partnerships among health care providers, patients, and families. It redefines the relationships in health care by placing an emphasis on collaborating with people of all ages, at all levels of care, and in all health care settings."
+                            </blockquote>
+                        </div>
+                        
+                        <h4 class="font-semibold mb-2">Key Characteristics:</h4>
+                        <ul class="list-disc pl-5 space-y-1 mb-6">
+                            <li>Recognizes the vital role that families play in ensuring the health and well-being of patients</li>
+                            <li>Acknowledges that emotional, social, and developmental support are integral components of healthcare</li>
+                            <li>Promotes the health and well-being of individuals and families</li>
+                            <li>Restores dignity and control to patients and families</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-semibold text-blue-800 mt-8 mb-3">Historical Development of PFCC</h3>
+                        
+                        <div class="flex flex-col md:flex-row gap-6 my-6">
+                            <div class="flex-3">
+                                <h4 class="font-semibold mb-2">Evolution of Patient Care Models</h4>
+                                <ul class="list-disc pl-5 space-y-2">
+                                    <li><strong>1950s-1960s:</strong> Provider-centered, paternalistic model dominates healthcare</li>
+                                    <li><strong>1970s-1980s:</strong> Beginning recognition of patient rights and autonomy</li>
+                                    <li><strong>1990s:</strong> Emergence of patient-centered care concepts</li>
+                                    <li><strong>2000s:</strong> Institute of Medicine identifies patient-centered care as one of six aims for healthcare improvement</li>
+                                    <li><strong>2010s-Present:</strong> Growing adoption of PFCC principles in healthcare systems globally</li>
+                                </ul>
+                            </div>
+                            <div class="flex-2">
+                                <div class="h-64 bg-blue-50 rounded-lg flex items-center justify-center">
+                                    <p class="text-center px-4"><i class="fas fa-hourglass-half text-5xl text-blue-700 mb-4 block"></i>Timeline of PFCC Evolution</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4 class="font-semibold mt-4 mb-2">Key Influencing Factors:</h4>
+                        <ul class="list-disc pl-5 space-y-1 mb-6">
+                            <li>Consumer advocacy movements</li>
+                            <li>Growing emphasis on healthcare quality and safety</li>
+                            <li>Research demonstrating benefits of family involvement</li>
+                            <li>Shift toward value-based healthcare delivery</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-semibold text-blue-800 mt-8 mb-3">The Four Core Principles of PFCC</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h4 class="font-semibold flex items-center mb-2">
+                                    <i class="fas fa-user-shield text-blue-700 mr-2"></i> Dignity and Respect
+                                </h4>
+                                <p class="text-sm">Healthcare practitioners listen to and honor patient and family perspectives and choices. Patient and family knowledge, values, beliefs, and cultural backgrounds are incorporated into the planning and delivery of care.</p>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h4 class="font-semibold flex items-center mb-2">
+                                    <i class="fas fa-share-alt text-blue-700 mr-2"></i> Information Sharing
+                                </h4>
+                                <p class="text-sm">Healthcare practitioners communicate and share complete and unbiased information with patients and families in ways that are affirming and useful. Patients and families receive timely, complete, and accurate information to effectively participate in care and decision-making.</p>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h4 class="font-semibold flex items-center mb-2">
+                                    <i class="fas fa-users text-blue-700 mr-2"></i> Participation
+                                </h4>
+                                <p class="text-sm">Patients and families are encouraged and supported in participating in care and decision-making at the level they choose. Institutions need to provide full opportunity for participation.</p>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h4 class="font-semibold flex items-center mb-2">
+                                    <i class="fas fa-hands-helping text-blue-700 mr-2"></i> Collaboration
+                                </h4>
+                                <p class="text-sm">Patients, families, healthcare practitioners, and leaders collaborate in policy and program development, implementation, and evaluation; in healthcare facility design; and in professional education, as well as in the delivery of care.</p>
+                            </div>
+                        </div>
+                        
+                        <p class="mb-6">These four principles form the foundation of all PFCC practices and should be integrated into all aspects of healthcare delivery.</p>
+                        
+                        <h3 class="text-xl font-semibold text-blue-800 mt-8 mb-3">Evidence Supporting PFCC Approaches</h3>
+                        <p class="mb-4">Research has increasingly demonstrated the benefits of Patient and Family-Centered Care across multiple healthcare domains and settings.</p>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg my-6">
+                            <h4 class="font-semibold mb-2">Key Research Findings:</h4>
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li><strong>Improved Clinical Outcomes:</strong> Studies show reduced hospitalization time, fewer readmissions, and improved adherence to treatment plans</li>
+                                <li><strong>Enhanced Patient Experience:</strong> Higher patient satisfaction scores and improved perception of care quality</li>
+                                <li><strong>Provider Benefits:</strong> Increased job satisfaction and reduced burnout among healthcare professionals</li>
+                                <li><strong>Organizational Advantages:</strong> Cost effectiveness, reduced liability claims, and improved resource allocation</li>
+                            </ul>
+                        </div>
+                        
+                        <p class="mb-2">Implementing PFCC approaches has been associated with:</p>
+                        <ul class="list-disc pl-5 space-y-1 mb-6">
+                            <li>Better health outcomes and improved quality of life</li>
+                            <li>More efficient use of healthcare resources</li>
+                            <li>Decreased healthcare utilization and costs</li>
+                            <li>Enhanced communication and trust between providers and patients</li>
+                            <li>Greater patient activation and engagement in self-care</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lecture 2 -->
+            <div class="bg-white rounded-lg shadow-md mb-6 overflow-hidden">
+                <button class="w-full text-left p-4 bg-blue-50 flex justify-between items-center font-medium border-l-4 border-blue-700" onclick="toggleContent('lecture2')">
+                    <span>Lecture 2: Core Principles in Practice</span>
+                    <i class="fas fa-chevron-down transition-transform" id="lecture2-icon"></i>
+                </button>
+                <div id="lecture2-content" class="hidden p-6">
+                    <div class="mb-6">
+                        <p class="mb-4">This lecture explores how the four core principles of Patient and Family-Centered Care are implemented in various healthcare settings.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <h4 class="font-semibold mb-2">Learning Objectives</h4>
+                                <ul class="list-disc pl-5 space-y-1">
+                                    <li>Apply the four PFCC principles in clinical practice</li>
+                                    <li>Identify strategies for implementing PFCC in different settings</li>
+                                    <li>Examine specific tools for enhancing patient and family involvement</li>
+                                    <li>Analyze barriers to PFCC implementation and strategies to overcome them</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-2">Key Topics</h4>
+                                <ul class="list-disc pl-5 space-y-1">
+                                    <li>Practical applications of the four core principles</li>
+                                    <li>Setting-specific implementation strategies</li>
+                                    <li>Overcoming resistance to PFCC approaches</li>
+                                    <li>Tools and resources for PFCC implementation</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3 class="text-xl font-semibold text-blue-800 mt-8 mb-3">Implementing Dignity and Respect</h3>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-700 my-6">
+                            <h4 class="font-semibold mb-2">Practical Strategies:</h4>
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li>Conduct comprehensive assessments that include cultural, spiritual, and social factors</li>
+                                <li>Ask patients how they prefer to be addressed</li>
+                                <li>Involve patients in identifying priorities for their care</li>
+                                <li>Honor cultural and religious practices that are important to patients and families</li>
+                                <li>Create physical environments that respect privacy and family presence</li>
+                            </ul>
+                        </div>
+                        
+                        <h3 class="text-xl font-semibold text-blue-800 mt-8 mb-3">Enhancing Information Sharing</h3>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-700 my-6">
+                            <h4 class="font-semibold mb-2">

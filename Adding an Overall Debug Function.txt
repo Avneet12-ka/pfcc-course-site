@@ -1,0 +1,29 @@
+function debugWebsiteStructure() {
+    console.log("Checking website structure...");
+    
+    // Check all lectures exist
+    for (let i = 1; i <= 5; i++) {
+        const lecture = document.getElementById(`lecture${i}`);
+        console.log(`Lecture ${i} exists: ${!!lecture}`);
+        
+        if (lecture) {
+            const slides = lecture.querySelectorAll('.slide');
+            console.log(`Lecture ${i} has ${slides.length} slides`);
+        }
+    }
+    
+    // Check all case studies exist
+    for (let i = 1; i <= 5; i++) {
+        const caseStudy = document.getElementById(`case-study${i}`);
+        console.log(`Case Study ${i} exists: ${!!caseStudy}`);
+    }
+    
+    // Check quizzes
+    const quizContainer = document.getElementById('quiz-container');
+    console.log(`Quiz container exists: ${!!quizContainer}`);
+    
+    return "Debug complete. Check console for results.";
+}
+
+// Call this from the browser console to diagnose issues
+// debugWebsiteStructure();

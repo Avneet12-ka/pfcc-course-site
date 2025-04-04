@@ -1,0 +1,20 @@
+function generateCertificate() {
+    // Get student information
+    const studentId = localStorage.getItem('studentId') || 'PFCC-' + Math.floor(100000 + Math.random() * 900000);
+    // Use your name instead of retrieving from localStorage
+    const studentName = "Dr. Avneet Kaur";
+    
+    // Show certificate modal
+    document.getElementById('certificate-name').textContent = studentName;
+    document.getElementById('certificate-id').textContent = studentId;
+    document.getElementById('certificate-date').textContent = new Date().toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    });
+    
+    // Also update the course director name if needed
+    document.getElementById('certificate-instructor').textContent = "Dr. Avneet Kaur";
+    
+    showModal('certificate-modal');
+}

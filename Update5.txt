@@ -1,0 +1,2518 @@
+<!-- Additional modals -->
+    <div id="welcome-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('welcome-modal')"><i class="fas fa-times"></i></button>
+            <h3 class="modal-title">Welcome to the PFCC Course!</h3>
+            <div>
+                <p>Thank you for enrolling in our Patient and Family-Centered Care course. We're excited to have you join our community of healthcare professionals committed to improving patient care through PFCC principles.</p>
+                
+                <div style="margin: 1.5rem 0; padding: 1rem; background-color: #f0f7ff; border-radius: 8px; border-left: 4px solid #1a56db;">
+                    <h4>Getting Started</h4>
+                    <ol style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                        <li>Explore the five comprehensive lectures on PFCC principles and practices</li>
+                        <li>Review real-world case studies from diverse healthcare settings</li>
+                        <li>Test your knowledge with interactive quizzes</li>
+                        <li>Access supplementary resources to deepen your understanding</li>
+                        <li>Complete the course to earn your certificate</li>
+                    </ol>
+                </div>
+                
+                <p>Your progress will be automatically saved as you navigate through the course. You can track your progress on the home page and generate a certificate once you've completed the required components.</p>
+            </div>
+            <div style="margin-top: 1.5rem; text-align: center;">
+                <button class="btn" onclick="closeModal('welcome-modal')">Start Learning</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="lecture-completed-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('lecture-completed-modal')"><i class="fas fa-times"></i></button>
+            <h3 class="modal-title"><i class="fas fa-check-circle" style="color: #38a169;"></i> Lecture Completed!</h3>
+            <div style="text-align: center; margin: 2rem 0;">
+                <p>Congratulations on completing this lecture!</p>
+                <p style="margin-top: 1rem;">Your progress has been saved. Keep up the good work!</p>
+            </div>
+            <div style="margin-top: 1.5rem; text-align: center;">
+                <button class="btn" onclick="closeModal('lecture-completed-modal'); showSection('quizzes');">Take a Quiz</button>
+                <button class="btn btn-outline" onclick="closeModal('lecture-completed-modal'); showSection('lectures');">Back to Lectures</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="case-completed-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('case-completed-modal')"><i class="fas fa-times"></i></button>
+            <h3 class="modal-title"><i class="fas fa-check-circle" style="color: #38a169;"></i> Case Study Completed!</h3>
+            <div style="text-align: center; margin: 2rem 0;">
+                <p>Great job analyzing this case study!</p>
+                <p style="margin-top: 1rem;">Your progress has been saved. Continue exploring more case studies to deepen your understanding.</p>
+            </div>
+            <div style="margin-top: 1.5rem; text-align: center;">
+                <button class="btn" onclick="closeModal('case-completed-modal'); showSection('quizzes');">Take a Quiz</button>
+                <button class="btn btn-outline" onclick="closeModal('case-completed-modal'); showSection('case-studies');">More Case Studies</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="certificate-modal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <button class="modal-close" onclick="closeModal('certificate-modal')"><i class="fas fa-times"></i></button>
+            <div id="certificate" style="border: 20px solid #1a56db; padding: 3rem; text-align: center; background-color: #fff; position: relative;">
+                <div style="position: absolute; top: 10px; right: 10px; font-size: 0.8rem; color: #718096;">
+                    Student ID: <span id="certificate-id">PFCC-123456</span>
+                </div>
+                <h2 style="font-size: 2.5rem; color: #1a56db; margin-bottom: 2rem;">Certificate of Completion</h2>
+                <p style="font-size: 1.5rem; margin-bottom: 2rem;">This certifies that</p>
+                <p style="font-size: 2rem; font-weight: bold; color: #2d3748; margin-bottom: 2rem;" id="certificate-name">Student Name</p>
+                <p style="font-size: 1.5rem; margin-bottom: 1rem;">has successfully completed the</p>
+                <p style="font-size: 1.8rem; font-weight: bold; color: #1a56db; margin-bottom: 2rem;">Patient and Family-Centered Care Course</p>
+                <p style="font-size: 1.2rem; margin-bottom: 3rem;">Demonstrating proficiency in PFCC principles, implementation strategies, and best practices</p>
+                <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+                    <div style="text-align: left;">
+                        <p style="margin-bottom: 0.5rem;" id="certificate-date">April 4, 2025</p>
+                        <p>Date</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <p style="margin-bottom: 0.5rem; border-bottom: 1px solid #2d3748; padding-bottom: 0.5rem;">Dr. Sarah Chen</p>
+                        <p>Course Director</p>
+                    </div>
+                </div>
+                <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); font-size: 0.8rem; color: #718096;">
+                    Verified Digital Certificate | PFCC Professional Development Program
+                </div>
+            </div>
+            <div style="margin-top: 1.5rem; text-align: center;">
+                <button class="btn" onclick="printCertificate()"><i class="fas fa-print"></i> Print Certificate</button>
+                <button class="btn btn-outline" onclick="closeModal('certificate-modal')">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="bronson-resources" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('bronson-resources')"><i class="fas fa-times"></i></button>
+            <h3 class="modal-title">Bronson Methodist Hospital: Additional Resources</h3>
+            <div>
+                <div class="resource-grid" style="margin-top: 1.5rem;">
+                    <div class="resource-card">
+                        <div class="resource-image">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="resource-content">
+                            <div class="resource-title">Bronson PFCC Implementation Guide</div>
+                            <div class="resource-type"><i class="fas fa-file-pdf"></i> PDF Report</div>
+                            <p>Detailed documentation of Bronson's PFCC implementation strategy and outcomes.</p>
+                            <div class="resource-actions">
+                                <button class="btn btn-outline btn-sm">Download</button>
+                                <span><i class="fas fa-download"></i> 432</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-image">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="resource-content">
+                            <div class="resource-title">Bronson PFCC Virtual Tour</div>
+                            <div class="resource-type"><i class="fas fa-film"></i> Video</div>
+                            <p>Virtual tour of Bronson's family-centered facility design features.</p>
+                            <div class="resource-actions">
+                                <button class="btn btn-outline btn-sm">Watch</button>
+                                <span><i class="fas fa-eye"></i> 218</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-image">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="resource-content">
+                            <div class="resource-title">Bronson PFAC Charter Template</div>
+                            <div class="resource-type"><i class="fas fa-file-word"></i> Document</div>
+                            <p>Sample charter document for Patient and Family Advisory Councils based on Bronson's model.</p>
+                            <div class="resource-actions">
+                                <button class="btn btn-outline btn-sm">Download</button>
+                                <span><i class="fas fa-download"></i> 176</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <h4>Research Publications</h4>
+                    <ul style="list-style-type: none; padding-left: 0; margin-top: 1rem;">
+                        <li style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">
+                            <div style="display: flex; align-items: flex-start;">
+                                <i class="fas fa-file-alt" style="margin-right: 1rem; color: #1a56db; margin-top: 0.25rem;"></i>
+                                <div>
+                                    <p style="font-weight: 500;">Chen, S., et al. (2023). "Implementation of Patient and Family-Centered Care at Bronson Methodist Hospital: A 10-Year Follow-up Study."</p>
+                                    <p style="font-size: 0.875rem; color: #718096;">Journal of Healthcare Quality, 45(3), 142-153.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">
+                            <div style="display: flex; align-items: flex-start;">
+                                <i class="fas fa-file-alt" style="margin-right: 1rem; color: #1a56db; margin-top: 0.25rem;"></i>
+                                <div>
+                                    <p style="font-weight: 500;">Johnson, R., & Williams, T. (2022). "The Economic Impact of PFCC Implementation: The Bronson Case Study."</p>
+                                    <p style="font-size: 0.875rem; color: #718096;">Healthcare Financial Management, 76(2), 78-89.</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div style="margin-top: 1.5rem; text-align: center;">
+                <button class="btn" onclick="closeModal('bronson-resources')">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="picu-resources" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('picu-resources')"><i class="fas fa-times"></i></button>
+            <h3 class="modal-title">PICU Family Involvement: Additional Resources</h3>
+            <div class="resource-grid" style="margin-top: 1.5rem;">
+                <div class="resource-card">
+                    <div class="resource-image">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="resource-content">
+                        <div class="resource-title">Family Participation Menu Template</div>
+                        <div class="resource-type"><i class="fas fa-file-word"></i> Document</div>
+                        <p>Customizable template for implementing the Family Participation Menu in your PICU.</p>
+                        <div class="resource-actions">
+                            <button class="btn btn-outline btn-sm">Download</button>
+                            <span><i class="fas fa-download"></i> 312</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-image">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="resource-content">
+                        <div class="resource-title">PICU PFCC Implementation Toolkit</div>
+                        <div class="resource-type"><i class="fas fa-file-archive"></i> Multiple Files</div>
+                        <p>Comprehensive toolkit for implementing family-centered rounds and family participation in PICU settings.</p>
+                        <div class="resource-actions">
+                            <button class="btn btn-outline btn-sm">Download</button>
+                            <span><i class="fas fa-download"></i> 147</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-image">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="resource-content">
+                        <div class="resource-title">Family-Centered Rounds: Training Video</div>
+                        <div class="resource-type"><i class="fas fa-film"></i> Video</div>
+                        <p>Educational video demonstrating effective family-centered rounds in pediatric critical care.</p>
+                        <div class="resource-actions">
+                            <button class="btn btn-outline btn-sm">Watch</button>
+                            <span><i class="fas fa-eye"></i> 263</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 1.5rem; text-align: center;">
+                <button class="btn" onclick="closeModal('picu-resources')">Close</button>
+            </div>
+        </div>
+    </div>        // Enhanced quizzes with more questions and improved feedback
+        const quizzes = {
+            1: {
+                title: "Quiz 1: Foundations of PFCC",
+                questions: [
+                    {
+                        question: "Which of the following best defines Patient and Family-Centered Care?",
+                        options: [
+                            "A model where healthcare providers make all decisions for patients",
+                            "An approach to healthcare that forms partnerships among practitioners, patients, and families",
+                            "A system where family members take primary responsibility for patient care",
+                            "A method focused exclusively on patient autonomy and independence"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "PFCC is defined as an approach to the planning, delivery, and evaluation of healthcare that forms mutually beneficial partnerships among patients, families, and healthcare practitioners."
+                    },
+                    {
+                        question: "Which is NOT one of the four core principles of PFCC?",
+                        options: [
+                            "Dignity and Respect",
+                            "Information Sharing",
+                            "Cost Efficiency",
+                            "Participation"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "The four core principles of PFCC are Dignity and Respect, Information Sharing, Participation, and Collaboration. While cost efficiency may be a positive outcome of PFCC, it is not one of the core principles."
+                    },
+                    {
+                        question: "According to historical development, when did the Institute of Medicine identify patient-centered care as one of six aims for healthcare improvement?",
+                        options: [
+                            "1970s",
+                            "1980s",
+                            "1990s",
+                            "2000s"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "The Institute of Medicine (now the National Academy of Medicine) identified patient-centered care as one of six aims for healthcare improvement in its landmark 2001 report 'Crossing the Quality Chasm.'"
+                    },
+                    {
+                        question: "Which of the following is an evidence-based outcome of implementing PFCC?",
+                        options: [
+                            "Increased healthcare costs",
+                            "Reduced patient engagement",
+                            "Improved clinical outcomes",
+                            "Decreased provider job satisfaction"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Research has consistently demonstrated that PFCC implementation is associated with improved clinical outcomes, including better adherence to treatment plans, reduced readmissions, and improved health status."
+                    },
+                    {
+                        question: "What historical trend contributed significantly to the development of PFCC?",
+                        options: [
+                            "Increasing specialization in medicine",
+                            "Consumer advocacy movements",
+                            "Growth of for-profit healthcare",
+                            "Reduction in family size"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Consumer advocacy movements in the 1960s and 1970s, which emphasized patient rights and autonomy, were a major catalyst for the development of patient-centered approaches to care."
+                    },
+                    {
+                        question: "In the context of PFCC, what does 'dignity and respect' primarily refer to?",
+                        options: [
+                            "Allowing patients unrestricted access to all medical records",
+                            "Honoring patient and family perspectives and choices",
+                            "Ensuring all patients receive identical treatment regardless of background",
+                            "Providing luxury accommodations in healthcare facilities"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Dignity and Respect in PFCC refers to listening to and honoring patient and family perspectives and choices, incorporating their knowledge, values, beliefs, and cultural backgrounds into the planning and delivery of care."
+                    },
+                    {
+                        question: "Which statement about families in PFCC is most accurate?",
+                        options: [
+                            "PFCC defines 'family' as blood relatives only",
+                            "PFCC views families primarily as visitors in healthcare settings",
+                            "In PFCC, patients define who constitutes their 'family'",
+                            "PFCC considers families important only for pediatric patients"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "A fundamental principle of PFCC is that patients define who constitutes their 'family' and how they will be involved in care and decision-making. This recognizes diverse family structures and relationships."
+                    },
+                    {
+                        question: "What is a key characteristic that distinguishes PFCC from traditional approaches to healthcare?",
+                        options: [
+                            "Focus on advanced technology",
+                            "Emphasis on specialty care",
+                            "Partnership approach to healthcare relationships",
+                            "Standardized treatment protocols"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "A key distinguishing characteristic of PFCC is its emphasis on partnership rather than paternalism in healthcare relationships. This represents a shift from provider-centered to patient and family-centered approaches."
+                    },
+                    {
+                        question: "Which organization has been a leading advocate for Patient and Family-Centered Care since the 1990s?",
+                        options: [
+                            "World Health Organization",
+                            "Institute for Patient and Family-Centered Care",
+                            "Centers for Disease Control and Prevention",
+                            "Joint Commission"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "The Institute for Patient and Family-Centered Care (formerly the Institute for Family-Centered Care) has been a leading advocate and resource for advancing the practice of patient and family-centered care since the 1990s."
+                    },
+                    {
+                        question: "How does PFCC view the role of patients and families in healthcare?",
+                        options: [
+                            "As recipients of care only",
+                            "As visitors in healthcare settings",
+                            "As essential members of the healthcare team",
+                            "As secondary to the provider-patient relationship"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "PFCC views patients and families as essential members of the healthcare team, recognizing their expertise about their own health experiences and needs, and valuing their input in all aspects of care."
+                    }
+                ]
+            },
+            2: {
+                title: "Quiz 2: Core Principles in Practice",
+                questions: [
+                    {
+                        question: "Which principle is demonstrated when healthcare providers incorporate patient values and preferences into care plans?",
+                        options: [
+                            "Information Sharing",
+                            "Dignity and Respect",
+                            "Participation",
+                            "Collaboration"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Incorporating patient values and preferences into care plans demonstrates the principle of Dignity and Respect, which involves honoring patient and family perspectives and choices."
+                    },
+                    {
+                        question: "Which of the following best demonstrates the 'participation' principle of PFCC?",
+                        options: [
+                            "Providers sharing complete diagnostic information",
+                            "Families being allowed to visit during specified hours",
+                            "Patients choosing their level of involvement in care activities",
+                            "Hospital administrators consulting with patient advisors"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "The participation principle involves patients and families being encouraged and supported to participate in care and decision-making at the level they choose. This empowers patients to determine their own involvement."
+                    },
+                    {
+                        question: "How is the principle of 'information sharing' best implemented in practice?",
+                        options: [
+                            "Providing all medical information regardless of patient preference",
+                            "Sharing comprehensive information in ways that are affirming and useful",
+                            "Limiting information to prevent patient anxiety",
+                            "Directing all communication through a designated family spokesperson"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Information sharing is best implemented by communicating complete and unbiased information with patients and families in ways that are affirming and useful, ensuring they receive timely, accurate information to effectively participate in care and decision-making."
+                    },
+                    {
+                        question: "Which scenario best demonstrates the 'collaboration' principle of PFCC?",
+                        options: [
+                            "A nurse following physician orders for patient care",
+                            "A hospital CEO making decisions about facility improvements",
+                            "A patient advisory council providing input on new hospital policies",
+                            "A family member bringing food from home for a patient"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "The collaboration principle involves patients, families, healthcare practitioners, and leaders working together in policy and program development, implementation, and evaluation. A patient advisory council providing input on hospital policies exemplifies this principle."
+                    },
+                    {
+                        question: "In a PFCC approach, how should healthcare providers respond to family members who want to be present during procedures?",
+                        options: [
+                            "Always allow family presence regardless of the situation",
+                            "Never allow family presence to avoid interference with care",
+                            "Develop policies that support family presence with appropriate preparation and support",
+                            "Allow family presence only for minor, non-invasive procedures"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "A PFCC approach involves developing policies that support family presence during procedures, with appropriate preparation and support. This recognizes the value of family presence while ensuring safety and effective care delivery."
+                    },
+                    {
+                        question: "How should healthcare facilities best engage patients and families in facility design?",
+                        options: [
+                            "Conduct surveys after design is complete",
+                            "Include patient and family representatives on design planning committees",
+                            "Follow industry standards without patient input",
+                            "Have administrators represent patient interests in planning"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "PFCC principles suggest that including patient and family representatives on design planning committees is the most effective approach to engagement. This ensures their perspectives are integrated throughout the design process."
+                    },
+                    {
+                        question: "Which approach to medical rounds best aligns with PFCC principles?",
+                        options: [
+                            "Conducting rounds outside patient rooms to protect privacy",
+                            "Limiting rounds to healthcare team members only",
+                            "Including patients and families as active participants in bedside rounds",
+                            "Having separate rounds for the healthcare team and for family updates"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Including patients and families as active participants in bedside rounds best aligns with PFCC principles, as it promotes information sharing, participation, and collaboration in real-time."
+                    },
+                    {
+                        question: "Which of the following most effectively facilitates family involvement in PFCC?",
+                        options: [
+                            "Strict visiting hours to ensure patient rest",
+                            "Flexible rooming-in policies that accommodate family presence",
+                            "Designated family spokesperson policies",
+                            "Separate waiting areas for family members"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Flexible rooming-in policies that accommodate family presence most effectively facilitate family involvement in PFCC by recognizing families as partners in care rather than visitors, and supporting their presence according to patient preferences."
+                    }
+                ]
+            },
+            3: {
+                title: "Quiz 3: Communication Skills for PFCC",
+                questions: [
+                    {
+                        question: "Which communication technique is most effective for checking understanding in PFCC?",
+                        options: [
+                            "Asking 'Do you understand?'",
+                            "Providing written materials",
+                            "Using teach-back or show-back methods",
+                            "Speaking slowly and clearly"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Teach-back or show-back methods, where patients are asked to explain or demonstrate what they've learned in their own words, are most effective for checking understanding. This verifies comprehension rather than simply asking if they understand."
+                    },
+                    {
+                        question: "Which approach best demonstrates cultural competence in PFCC communication?",
+                        options: [
+                            "Using the same communication approach with all patients",
+                            "Assuming cultural needs based on a patient's appearance",
+                            "Asking patients about their communication preferences and cultural needs",
+                            "Speaking loudly to overcome language barriers"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Asking patients about their communication preferences and cultural needs demonstrates cultural competence by recognizing individual variation within cultural groups and avoiding stereotyping, while still acknowledging the importance of cultural factors."
+                    },
+                    {
+                        question: "What is the most appropriate approach to medical interpretation in PFCC?",
+                        options: [
+                            "Having family members interpret medical information",
+                            "Using professional interpreters for all medical discussions",
+                            "Using bilingual staff members when available",
+                            "Simplifying information to overcome language barriers"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Using professional interpreters for all medical discussions is most appropriate in PFCC, as they have training in medical terminology and ethical standards. Family members may have conflicts of interest, lack medical vocabulary, or filter information."
+                    },
+                    {
+                        question: "What is a key element of shared decision-making in PFCC?",
+                        options: [
+                            "Provider makes decisions based on clinical evidence alone",
+                            "Family members make decisions for the patient",
+                            "Integration of evidence with patient values and preferences",
+                            "Following standardized protocols for all patients"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "A key element of shared decision-making is the integration of clinical evidence with patient values and preferences, creating a collaborative process that respects both medical expertise and patient autonomy."
+                    },
+                    {
+                        question: "Which approach to digital communication best supports PFCC principles?",
+                        options: [
+                            "Using technology to replace face-to-face interactions",
+                            "Limiting digital tools to younger patients only",
+                            "Adapting digital approaches based on patient preferences and needs",
+                            "Standardizing all digital communication processes"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Adapting digital approaches based on patient preferences and needs best supports PFCC principles, as it recognizes diversity in digital literacy, access, and communication preferences while still leveraging technology's benefits."
+                    },
+                    {
+                        question: "What is the most effective approach to breaking bad news in PFCC?",
+                        options: [
+                            "Providing all information at once to get it over with quickly",
+                            "Using euphemisms to soften the impact",
+                            "Following a structured protocol like SPIKES",
+                            "Delegating the task to a specialized team member"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Following a structured protocol like SPIKES (Setting, Perception, Invitation, Knowledge, Emotions, Strategy) is most effective for breaking bad news, as it ensures a patient-centered approach that assesses understanding, provides information clearly, and responds to emotions."
+                    },
+                    {
+                        question: "How should healthcare providers best communicate with patients from collectivist cultures?",
+                        options: [
+                            "Always direct all communication to the family decision-maker",
+                            "Insist on speaking only with the patient to protect autonomy",
+                            "Assess the patient's preferences for family involvement in communication",
+                            "Provide identical information to patient and family separately"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Assessing the patient's preferences for family involvement in communication is best when working with patients from collectivist cultures. This respects cultural patterns while still recognizing individual variation and patient autonomy."
+                    },
+                    {
+                        question: "Which approach to conflict resolution best aligns with PFCC principles?",
+                        options: [
+                            "Provider makes final decisions when conflicts arise",
+                            "Ethics committee decides without patient/family input",
+                            "Collaborative problem-solving involving all stakeholders",
+                            "Following institutional policies regardless of circumstances"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Collaborative problem-solving involving all stakeholders best aligns with PFCC principles, as it respects diverse perspectives and seeks solutions that incorporate the values and concerns of patients, families, and healthcare providers."
+                    }
+                ]
+            },
+            4: {
+                title: "Quiz 4: Building Systems to Support PFCC",
+                questions: [
+                    {
+                        question: "Which organizational structure best supports PFCC implementation?",
+                        options: [
+                            "Traditional hierarchical leadership",
+                            "Physician-led committees",
+                            "Patient and Family Advisory Councils",
+                            "External regulatory oversight"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Patient and Family Advisory Councils (PFACs) best support PFCC implementation by providing structured mechanisms for incorporating patient and family perspectives into organizational planning, policies, and evaluation."
+                    },
+                    {
+                        question: "What is a key leadership action that supports PFCC implementation?",
+                        options: [
+                            "Delegating PFCC initiatives to frontline staff only",
+                            "Modeling PFCC behaviors in interactions with patients, families, and staff",
+                            "Focusing primarily on clinical quality measures",
+                            "Limiting PFCC implementation to specific departments"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Modeling PFCC behaviors in interactions with patients, families, and staff is a key leadership action, as it demonstrates commitment, sets expectations, and creates a culture that values patient and family engagement."
+                    },
+                    {
+                        question: "Which approach to staff education best supports PFCC implementation?",
+                        options: [
+                            "One-time orientation to PFCC concepts",
+                            "Department-specific training without standardization",
+                            "Ongoing education with practical skills development and feedback",
+                            "Self-directed learning modules only"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Ongoing education with practical skills development and feedback best supports PFCC implementation by building capabilities over time, reinforcing concepts, and allowing for skill practice and improvement."
+                    },
+                    {
+                        question: "What physical environment feature best supports family presence in healthcare settings?",
+                        options: [
+                            "Separate family waiting areas away from patient care areas",
+                            "Limited visiting hours to control traffic flow",
+                            "Dedicated family space within patient rooms",
+                            "Centralized nursing stations for staff efficiency"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Dedicated family space within patient rooms best supports family presence by acknowledging families as partners in care rather than visitors, and creating physical environments that accommodate their presence and participation."
+                    },
+                    {
+                        question: "Which policy best demonstrates commitment to the PFCC principle of dignity and respect?",
+                        options: [
+                            "Standardized care protocols for all patients",
+                            "Patient preferences documented and honored in care planning",
+                            "Efficiency-focused workflow processes",
+                            "Technology-centered documentation systems"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Policies ensuring patient preferences are documented and honored in care planning best demonstrate commitment to dignity and respect by creating systems that consistently incorporate patient values and choices into care delivery."
+                    },
+                    {
+                        question: "What is the most effective approach to PFCC policy development?",
+                        options: [
+                            "Administrative decisions based on efficiency",
+                            "Direct copying of policies from other institutions",
+                            "Collaborative development with patient and family input",
+                            "Physician committee development and approval"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Collaborative development with patient and family input is the most effective approach to PFCC policy development, ensuring policies reflect the needs and preferences of those who will be most affected by them."
+                    },
+                    {
+                        question: "Which hiring practice best supports PFCC implementation?",
+                        options: [
+                            "Hiring based primarily on technical skills",
+                            "Including PFCC competencies in job descriptions and interviews",
+                            "Prioritizing years of experience over interpersonal skills",
+                            "Focusing on academic credentials"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Including PFCC competencies in job descriptions and interviews best supports implementation by selecting staff who have the necessary attitudes, knowledge, and skills to practice patient and family-centered care effectively."
+                    },
+                    {
+                        question: "What is the most important consideration when implementing PFCC in a resource-constrained setting?",
+                        options: [
+                            "Delaying implementation until more resources are available",
+                            "Implementing only low-cost PFCC elements",
+                            "Identifying high-impact, culturally appropriate strategies",
+                            "Following standardized international guidelines"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Identifying high-impact, culturally appropriate strategies is most important in resource-constrained settings, focusing on changes that will make the most difference while respecting local contexts and priorities."
+                    },
+                    {
+                        question: "Which technological solution best supports PFCC implementation?",
+                        options: [
+                            "Provider-focused documentation systems",
+                            "Patient portals with secure messaging and access to records",
+                            "Automated appointment reminder systems",
+                            "Staff communication platforms"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Patient portals with secure messaging and access to records best support PFCC implementation by enhancing information sharing, enabling patient participation, and facilitating communication between visits."
+                    },
+                    {
+                        question: "What organizational attribute is most critical for sustained PFCC implementation?",
+                        options: [
+                            "Adequate financial resources",
+                            "Advanced technological infrastructure",
+                            "Organizational culture that values partnerships with patients and families",
+                            "Large facilities with specialized units"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "An organizational culture that values partnerships with patients and families is most critical for sustained PFCC implementation, as it creates the foundation for all other PFCC initiatives and helps maintain momentum through leadership changes and resource challenges."
+                    }
+                ]
+            },
+            5: {
+                title: "Quiz 5: Measuring and Improving PFCC Outcomes",
+                questions: [
+                    {
+                        question: "Which measurement approach best captures the patient's perspective on PFCC implementation?",
+                        options: [
+                            "Clinical outcome measures only",
+                            "Staff satisfaction surveys",
+                            "Patient experience surveys with PFCC-specific questions",
+                            "Financial performance metrics"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Patient experience surveys with PFCC-specific questions best capture the patient's perspective by directly assessing their experiences with care elements related to dignity, respect, information sharing, participation, and collaboration."
+                    },
+                    {
+                        question: "What is a key characteristic of effective PFCC measurement?",
+                        options: [
+                            "Focus on provider productivity metrics",
+                            "Inclusion of both process and outcome measures",
+                            "Emphasis on clinical outcomes only",
+                            "Reliance on a single measurement tool"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Inclusion of both process and outcome measures is a key characteristic of effective PFCC measurement, as it assesses both how PFCC is being implemented (processes) and what results are being achieved (outcomes)."
+                    },
+                    {
+                        question: "Which quality improvement methodology is most appropriate for testing PFCC interventions?",
+                        options: [
+                            "Randomized controlled trials only",
+                            "Plan-Do-Study-Act (PDSA) cycles",
+                            "Retrospective chart reviews",
+                            "Benchmarking against other institutions"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Plan-Do-Study-Act (PDSA) cycles are most appropriate for testing PFCC interventions as they allow for rapid testing, learning, and refinement of approaches in real-world settings with direct feedback from patients and families."
+                    },
+                    {
+                        question: "What role should patients and families play in PFCC quality improvement efforts?",
+                        options: [
+                            "Survey respondents only",
+                            "Reviewers of completed improvement plans",
+                            "Active members of improvement teams throughout the process",
+                            "Recipients of improvement outcomes"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Patients and families should be active members of improvement teams throughout the process, contributing their unique perspectives to problem identification, solution design, implementation, and evaluation."
+                    },
+                    {
+                        question: "Which approach best integrates PFCC into value-based care models?",
+                        options: [
+                            "Focusing exclusively on clinical quality metrics",
+                            "Prioritizing cost reduction over patient experience",
+                            "Including patient-reported outcomes and experience measures in value equations",
+                            "Standardizing care processes regardless of patient preferences"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Including patient-reported outcomes and experience measures in value equations best integrates PFCC into value-based care by ensuring that 'value' incorporates what matters to patients, not just clinical and financial metrics."
+                    },
+                    {
+                        question: "What is the most effective way to use patient satisfaction data for PFCC improvement?",
+                        options: [
+                            "Compare with national benchmarks only",
+                            "Focus on the highest-scoring areas",
+                            "Identify patterns and themes from comments and low-scoring areas",
+                            "Use aggregate scores without item-level analysis"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Identifying patterns and themes from comments and low-scoring areas is most effective, as it provides specific insights into improvement opportunities and is more actionable than aggregate scores or benchmarks alone."
+                    },
+                    {
+                        question: "Which measurement approach best assesses family engagement in care?",
+                        options: [
+                            "Clinical documentation of family visits",
+                            "Mixed methods including observation and family interviews",
+                            "Provider assessment of family participation",
+                            "Family demographic data"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Mixed methods including observation and family interviews best assess family engagement by combining objective measures of participation with subjective experiences, providing a more complete picture than either approach alone."
+                    },
+                    {
+                        question: "What is the most important consideration when developing PFCC metrics in diverse cultural contexts?",
+                        options: [
+                            "Using identical measures across all settings",
+                            "Focusing only on universal clinical outcomes",
+                            "Adapting measures to reflect local cultural values and priorities",
+                            "Relying on translated versions of Western tools without modification"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Adapting measures to reflect local cultural values and priorities is most important, as it ensures metrics assess what matters to patients and families in that specific cultural context rather than imposing external values or definitions of quality."
+                    }
+                ]
+            },
+            6: {
+                title: "Quiz 6: Cultural Aspects of PFCC",
+                questions: [
+                    {
+                        question: "Which approach best demonstrates cultural competence in PFCC implementation?",
+                        options: [
+                            "Applying the same PFCC model across all cultural contexts",
+                            "Adapting PFCC approaches based on assessment of cultural values and preferences",
+                            "Focusing on clinical care aspects while minimizing cultural considerations",
+                            "Implementing separate care pathways based on ethnic backgrounds"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Adapting PFCC approaches based on assessment of cultural values and preferences best demonstrates cultural competence by recognizing the influence of culture on healthcare expectations and preferences while avoiding stereotyping."
+                    },
+                    {
+                        question: "How should healthcare providers best handle family decision-making in collectivist cultures?",
+                        options: [
+                            "Always insist on individual patient autonomy regardless of cultural context",
+                            "Always defer to family decision-making without patient involvement",
+                            "Assess each patient's preferences for decision-making involvement",
+                            "Follow standardized protocols based on ethnic background"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Assessing each patient's preferences for decision-making involvement is best, as it respects cultural patterns while acknowledging individual variation within cultures and avoiding stereotyping or one-size-fits-all approaches."
+                    },
+                    {
+                        question: "Which feature of PFCC might need the most significant adaptation in different cultural contexts?",
+                        options: [
+                            "Definition of 'family' and who should be involved in care",
+                            "Importance of providing high-quality clinical care",
+                            "Need for clean healthcare environments",
+                            "Value of treating patients with respect"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "The definition of 'family' and who should be involved in care might need the most significant adaptation, as family structures, roles, and involvement expectations vary substantially across cultures."
+                    },
+                    {
+                        question: "What approach to truth-telling best aligns with PFCC principles in cultures where direct disclosure is not the norm?",
+                        options: [
+                            "Always disclose all information directly to patients regardless of cultural preferences",
+                            "Always follow family requests to withhold information from patients",
+                            "Assess patient preferences for information disclosure and work within cultural frameworks",
+                            "Delegate all communication to family members"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Assessing patient preferences for information disclosure and working within cultural frameworks best aligns with PFCC principles by respecting both cultural norms and individual patient wishes regarding information sharing."
+                    },
+                    {
+                        question: "Which aspect of PFCC implementation in Southeast Asia requires careful cultural consideration?",
+                        options: [
+                            "The value placed on family involvement in care",
+                            "The need for clinical excellence",
+                            "The importance of clean facilities",
+                            "The desire for respectful treatment"
+                        ],
+                        correctAnswer: 0,
+                        explanation: "The value placed on family involvement in care requires careful cultural consideration in Southeast Asia, where family roles, hierarchy, and collective decision-making may differ from Western models of PFCC."
+                    },
+                    {
+                        question: "How should healthcare facilities best accommodate religious practices in PFCC implementation?",
+                        options: [
+                            "Prohibit all religious practices to maintain neutrality",
+                            "Allow only majority religion practices",
+                            "Create environments and policies that support diverse religious needs",
+                            "Ignore religious considerations in healthcare settings"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Creating environments and policies that support diverse religious needs best accommodates religious practices in PFCC implementation, recognizing that spiritual and religious beliefs often play important roles in how patients and families experience illness and healthcare."
+                    },
+                    {
+                        question: "What is the most important consideration when implementing PFCC in multilingual healthcare settings?",
+                        options: [
+                            "Using only the official national language",
+                            "Expecting family members to interpret",
+                            "Providing professional interpretation services for all clinical interactions",
+                            "Limiting communication to simple concepts"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Providing professional interpretation services for all clinical interactions is most important in multilingual settings, as language barriers can significantly impact information sharing, participation, and collaboration - key principles of PFCC."
+                    },
+                    {
+                        question: "Which approach to cultural competence training best supports PFCC implementation?",
+                        options: [
+                            "One-time cultural awareness sessions",
+                            "Memorization of cultural facts about various ethnic groups",
+                            "Ongoing development of cultural humility and assessment skills",
+                            "Culture-specific protocols for each ethnic group"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Ongoing development of cultural humility and assessment skills best supports PFCC implementation by building providers' capabilities to learn from patients about their individual cultural contexts rather than relying on generalizations or stereotypes."
+                    },
+                    {
+                        question: "How should PFCC educational materials best be adapted for diverse cultural contexts?",
+                        options: [
+                            "Simple translation of existing materials",
+                            "Creation of entirely new materials for each culture",
+                            "Cultural and linguistic adaptation with community input",
+                            "Use of universal pictures only without text"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Cultural and linguistic adaptation with community input best adapts educational materials by ensuring they are not only linguistically appropriate but also culturally relevant, using familiar concepts, examples, and imagery."
+                    },
+                    {
+                        question: "Which approach to measuring PFCC outcomes is most appropriate in diverse cultural contexts?",
+                        options: [
+                            "Using identical measures across all settings",
+                            "Focusing only on clinical outcomes to avoid cultural bias",
+                            "Developing and validating culturally relevant measures with local input",
+                            "Avoiding measurement due to cultural complexity"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Developing and validating culturally relevant measures with local input is most appropriate, ensuring that assessment focuses on aspects of care that matter to specific populations and measures them in culturally meaningful ways."
+                    }
+                ]
+            }
+        }; and Family-Centered Care?",
+                        options: [
+                            "A model where healthcare providers make all decisions for patients",
+                            "An approach to healthcare that forms partnerships among practitioners, patients, and families",
+                            "A system where family members take primary responsibility for patient care",
+                            "A method focused exclusively on patient autonomy and independence"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "PFCC is defined as an approach to the planning, delivery, and evaluation of healthcare that forms mutually beneficial partnerships among patients, families, and healthcare practitioners."
+                    },
+                    {
+                        question: "Which is NOT one of the four core principles of PFCC?",
+                        options: [
+                            "Dignity and Respect",
+                            "Information Sharing",
+                            "Cost Efficiency",
+                            "Participation"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "The four core principles of PFCC are Dignity and Respect, Information Sharing, Participation, and Collaboration. While cost efficiency may be a positive outcome of PFCC, it is not one of the core principles."
+                    },
+                    {
+                        question: "According to historical development, when did the Institute of Medicine identify patient-centered care as one of six aims for healthcare improvement?",
+                        options: [
+                            "1970s",
+                            "1980s",
+                            "1990s",
+                            "2000s"
+                        ],
+                        correctAnswer: 3,
+                        explanation: "The Institute of Medicine (now the National Academy of Medicine) identified patient-centered care as one of six aims for healthcare improvement in its landmark 2001 report 'Crossing the Quality Chasm.'"
+                    },
+                    {
+                        question: "Which of the following is an evidence-based outcome of implementing PFCC?",
+                        options: [
+                            "Increased healthcare costs",
+                            "Reduced patient engagement",
+                            "Improved clinical outcomes",
+                            "Decreased provider job satisfaction"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "Research has consistently demonstrated that PFCC implementation is associated with improved clinical outcomes, including better adherence to treatment plans, reduced readmissions, and improved health status."
+                    },
+                    {
+                        question: "What historical trend contributed significantly to the development of PFCC?",
+                        options: [
+                            "Increasing specialization in medicine",
+                            "Consumer advocacy movements",
+                            "Growth of for-profit healthcare",
+                            "Reduction in family size"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Consumer advocacy movements in the 1960s and 1970s, which emphasized patient rights and autonomy, were a major catalyst for the development of patient-centered approaches to care."
+                    },
+                    {
+                        question: "In the context of PFCC, what does 'dignity and respect' primarily refer to?",
+                        options: [
+                            "Allowing patients unrestricted access to all medical records",
+                            "Honoring patient and family perspectives and choices",
+                            "Ensuring all patients receive identical treatment regardless of background",
+                            "Providing luxury accommodations in healthcare facilities"
+                        ],
+                        correctAnswer: 1,
+                        explanation: "Dignity and Respect in PFCC refers to listening to and honoring patient and family perspectives and choices, incorporating their knowledge, values, beliefs, and cultural backgrounds into the planning and delivery of care."
+                    },
+                    {
+                        question: "Which statement about families in PFCC is most accurate?",
+                        options: [
+                            "PFCC defines 'family' as blood relatives only",
+                            "PFCC views families primarily as visitors in healthcare settings",
+                            "In PFCC, patients define who constitutes their 'family'",
+                            "PFCC considers families important only for pediatric patients"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "A fundamental principle of PFCC is that patients define who constitutes their 'family' and how they will be involved in care and decision-making. This recognizes diverse family structures and relationships."
+                    },
+                    {
+                        question: "What is a key characteristic that distinguishes PFCC from traditional approaches to healthcare?",
+                        options: [
+                            "Focus on advanced technology",
+                            "Emphasis on specialty care",
+                            "Partnership approach to healthcare relationships",
+                            "Standardized treatment protocols"
+                        ],
+                        correctAnswer: 2,
+                        explanation: "A key distinguishing characteristic of PFCC is        <!-- Case Studies section -->
+        <section id="case-studies" class="content-section">
+            <h2>Case Studies</h2>
+            <p>Explore real-world applications of Patient and Family-Centered Care through these detailed case studies from diverse healthcare settings.</p>
+            
+            <div class="card">
+                <h3>Available Case Studies</h3>
+                <ul class="nav-list" style="flex-direction: column; padding: 0;">
+                    <li><a href="#" onclick="showCaseStudy(1); return false;" class="nav-link">Case Study 1: Bronson Methodist Hospital PFCC Implementation</a></li>
+                    <li><a href="#" onclick="showCaseStudy(2); return false;" class="nav-link">Case Study 2: Pediatric ICU Family Involvement Model</a></li>
+                    <li><a href="#" onclick="showCaseStudy(3); return false;" class="nav-link">Case Study 3: NICU Design with Patient/Family Input</a></li>
+                    <li><a href="#" onclick="showCaseStudy(4); return false;" class="nav-link">Case Study 4: Emergency Department PFCC Implementation</a></li>
+                    <li><a href="#" onclick="showCaseStudy(5); return false;" class="nav-link">Case Study 5: Chronic Disease Management Partnerships in Southeast Asia</a></li>
+                </ul>
+            </div>
+            
+            <!-- Case Study 1 -->
+            <div id="case-study1" class="case-study" style="display:none;">
+                <h3>Case Study 1: Bronson Methodist Hospital PFCC Implementation</h3>
+                
+                <div class="case-overview">
+                    <h4>Overview</h4>
+                    <p>Bronson Methodist Hospital in Kalamazoo, Michigan implemented a comprehensive PFCC approach that earned them recognition as a leader in patient-centered care. This case study examines their transformational journey and key strategies.</p>
+                </div>
+                
+                <h4>Background</h4>
+                <p>Bronson Methodist Hospital is a 434-bed tertiary care hospital serving southwest Michigan. In the early 2000s, the hospital leadership committed to transforming their organizational culture to fully embrace PFCC principles.</p>
+                
+                <h4>Key Initiatives</h4>
+                <ul>
+                    <li><strong>Facility Redesign:</strong> The hospital underwent major renovations with patient and family input, creating all-private rooms designed for family presence.</li>
+                    <li><strong>Patient-Family Advisory Councils:</strong> The hospital established multiple councils that regularly provide input on policies, programs, and facility design.</li>
+                    <li><strong>Open Visitation Policies:</strong> Eliminated restrictive visiting hours, allowing families to be present according to patient preferences.</li>
+                    <li><strong>Staff Education:</strong> All staff, from executives to frontline employees, received training on PFCC principles and practices.</li>
+                </ul>
+                
+                <div style="background-color: #f0f7ff; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; border-left: 4px solid #1a56db;">
+                    <h4>Implementation Strategy</h4>
+                    <p>Bronson's approach to PFCC implementation was characterized by:</p>
+                    <ol>
+                        <li>Strong executive leadership commitment with designated champions</li>
+                        <li>Clear articulation of PFCC as a core organizational value</li>
+                        <li>Systematic staff education with concrete behavioral expectations</li>
+                        <li>Structured mechanisms for patient and family input</li>
+                        <li>Integration of PFCC principles into operational policies</li>
+                        <li>Consistent measurement and feedback loops</li>
+                    </ol>
+                </div>
+                
+                <h4>Outcomes</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background-color: #f0fff4; padding: 1rem; border-radius: 8px; border-left: 4px solid #38a169;">
+                        <h5>Patient Experience</h5>
+                        <ul>
+                            <li>Top 1% nationally in patient satisfaction</li>
+                            <li>97% would recommend to friends and family</li>
+                            <li>Significant improvement in communication scores</li>
+                        </ul>
+                    </div>
+                    <div style="background-color: #f0fff4; padding: 1rem; border-radius: 8px; border-left: 4px solid #38a169;">
+                        <h5>Clinical Outcomes</h5>
+                        <ul>
+                            <li>Decreased infection rates</li>
+                            <li>Reduced medication errors</li>
+                            <li>Improved pain management scores</li>
+                        </ul>
+                    </div>
+                    <div style="background-color: #f0fff4; padding: 1rem; border-radius: 8px; border-left: 4px solid #38a169;">
+                        <h5>Organizational Impact</h5>
+                        <ul>
+                            <li>Increased staff satisfaction and retention</li>
+                            <li>National recognition and awards</li>
+                            <li>Increased market share in service area</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h4>Discussion Questions</h4>
+                <ol>
+                    <li>What key factors contributed to Bronson Methodist Hospital's successful implementation of PFCC?</li>
+                    <li>How did the physical environment redesign support PFCC principles?</li>
+                    <li>What resistance might have emerged during implementation, and how could it have been addressed?</li>
+                    <li>How could similar strategies be adapted for healthcare settings in Southeast Asia?</li>
+                    <li>What cultural considerations would be important when implementing Bronson's approach in different countries?</li>
+                </ol>
+                
+                <div style="margin-top: 2rem;">
+                    <button class="btn" onclick="showSection('quizzes'); loadQuiz(1);">Take Case Study Quiz</button>
+                    <button class="btn btn-outline" onclick="showModal('bronson-resources'); return false;">Access Related Resources</button>
+                </div>
+            </div>
+            
+            <!-- Case Study 2 -->
+            <div id="case-study2" class="case-study" style="display:none;">
+                <h3>Case Study 2: Pediatric ICU Family Involvement Model</h3>
+                
+                <div class="case-overview">
+                    <h4>Overview</h4>
+                    <p>This case study examines how Children's National Medical Center in Washington, DC transformed their Pediatric Intensive Care Unit (PICU) practices to fully integrate families as active participants in care and decision-making.</p>
+                </div>
+                
+                <h4>Background</h4>
+                <p>Children's National PICU is a 44-bed unit serving critically ill children from the Washington metropolitan area and beyond. Prior to their PFCC initiative, the unit had restrictive visiting policies and limited family involvement in care processes.</p>
+                
+                <h4>PFCC Transformation</h4>
+                <div style="margin: 1.5rem 0;">
+                    <h5>Key Elements of the PICU Family Involvement Model:</h5>
+                    <ul>
+                        <li><strong>Family Presence Policy:</strong> Eliminated traditional "visiting hours" in favor of 24/7 family access, with accommodations for overnight stays</li>
+                        <li><strong>Family-Centered Rounds:</strong> Structured daily rounds to include families as active participants, not just observers</li>
+                        <li><strong>Parent Education Program:</strong> Comprehensive education to prepare parents for participation in care activities</li>
+                        <li><strong>Parent Support Network:</strong> System connecting experienced PICU families with newly admitted families</li>
+                        <li><strong>Family Participation Menu:</strong> Tool allowing families to indicate their desired level of involvement in specific care activities</li>
+                        <li><strong>Family-Staff Communication Boards:</strong> Bedside tools to enhance information sharing and goal alignment</li>
+                    </ul>
+                </div>
+                
+                <div style="background-color: #f0f7ff; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; border-left: 4px solid #1a56db;">
+                    <h4>Implementation Process</h4>
+                    <p>The PICU transformation followed a structured change management approach:</p>
+                    <ol>
+                        <li><strong>Assessment:</strong> Conducted surveys and focus groups with families and staff to identify gaps in family-centered care</li>
+                        <li><strong>Planning:</strong> Formed a multidisciplinary team including parents to design the new model</li>
+                        <li><strong>Education:</strong> Provided comprehensive training for all PICU staff on new processes and family engagement skills</li>
+                        <li><strong>Implementation:</strong> Phased rollout of individual components with continuous refinement</li>
+                        <li><strong>Evaluation:</strong> Systematic measurement of impact on families, patients, staff, and clinical outcomes</li>
+                    </ol>
+                </div>
+                
+                <h4>Overcoming Challenges</h4>
+                <p>The implementation team encountered several challenges:</p>
+                <ul>
+                    <li><strong>Staff Concerns:</strong> Some staff initially worried about increased workload, interference with care, and privacy issues</li>
+                    <li><strong>Space Constraints:</strong> The physical environment needed modifications to accommodate family presence</li>
+                    <li><strong>Cultural Barriers:</strong> Diverse family backgrounds required adaptations to the standard approach</li>
+                    <li><strong>Workflow Disruption:</strong> Existing clinical workflows needed redesign to incorporate family participation</li>
+                </ul>
+                
+                <p>These challenges were addressed through:</p>
+                <ul>
+                    <li>Staff champions from each discipline who modeled and promoted new practices</li>
+                    <li>Creative space utilization and minor renovations</li>
+                    <li>Cultural competence training and multilingual resources</li>
+                    <li>Gradual workflow adjustments with staff input</li>
+                </ul>
+                
+                <h4>Outcomes</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background-color: #f0fff4; padding: 1rem; border-radius: 8px; border-left: 4px solid #38a169;">
+                        <h5>Family Outcomes</h5>
+                        <ul>
+                            <li>Increased family satisfaction (92% very satisfied)</li>
+                            <li>Decreased family anxiety and stress</li>
+                            <li>Improved family preparedness for home care</li>
+                        </ul>
+                    </div>
+                    <div style="background-color: #f0fff4; padding: 1rem; border-radius: 8px; border-left: 4px solid #38a169;">
+                        <h5>Clinical Outcomes</h5>
+                        <ul>
+                            <li>25% reduction in medication errors</li>
+                            <li>Improved pain management</li>
+                            <li>Decreased length of stay by 0.8 days</li>
+                        </ul>
+                    </div>
+                    <div style="background-color: #f0fff4; padding: 1rem; border-radius: 8px; border-left: 4px solid #38a169;">
+                        <h5>Staff Outcomes</h5>
+                        <ul>
+                            <li>Increased job satisfaction after initial adjustment period</li>
+                            <li>Improved collaboration with families</li>
+                            <li>Enhanced cultural competence</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h4>Discussion Questions</h4>
+                <ol>
+                    <li>How might the family participation menu concept be adapted for different cultural contexts in Southeast Asia?</li>
+                    <li>What specific strategies could address staff resistance to family presence in critical care settings?</li>
+                    <li>How would you modify the family education program for families with limited health literacy?</li>
+                    <li>What technological tools could enhance family participation in settings with limited resources?</li>
+                    <li>How might family-centered rounds be structured differently in collectivist cultures?</li>
+                </ol>
+                
+                <div style="margin-top: 2rem;">
+                    <button class="btn" onclick="showSection('quizzes'); loadQuiz(2);">Take Case Study Quiz</button>
+                    <button class="btn btn-outline" onclick="showModal('picu-resources'); return false;">Access Related Resources</button>
+                </div>
+            </div>
+            
+            <!-- Case Study 3 -->
+            <div id="case-study3" class="case-study" style="display:none;">
+                <h3>Case Study 3: NICU Design with Patient/Family Input</h3>
+                
+                <div class="case-overview">
+                    <h4>Overview</h4>
+                    <p>This case study examines how Ampang Hospital in Malaysia redesigned their Neonatal Intensive Care Unit (NICU) with extensive input from families, resulting in a space that better supports infant development, family involvement, and staff efficiency.</p>
+                </div>
+                
+                <h4>Background</h4>
+                <p>The original NICU at Ampang Hospital was an open-bay design with 30 beds in a shared space, limited privacy, high noise levels, and minimal accommodations for parents. When planning a renovation, leadership committed to incorporating PFCC principles into the design process.</p>
+                
+                <h4>Family-Centered Design Process</h4>
+                <div style="margin: 1.5rem 0;">
+                    <h5>Key Elements of the Design Process:</h5>
+                    <ul>
+                        <li><strong>Design Committee:</strong> Formation of a committee including architects, clinical staff, and former NICU parents</li>
+                        <li><strong>Family Experience Mapping:</strong> Documentation of the family journey through the NICU to identify pain points and opportunities</li>
+                        <li><strong>Family Focus Groups:</strong> Multiple sessions with diverse families to gather input on design priorities</li>
+                        <li><strong>Staff-Family Design Workshops:</strong> Collaborative sessions to develop and refine design concepts</li>
+                        <li><strong>Prototype Testing:</strong> Mock-ups of key spaces that families and staff could experience and evaluate</li>
+                        <li><strong>Post-Occupancy Evaluation:</strong> Structured assessment after implementation to identify further improvements</li>
+                    </ul>
+                </div>
+                
+                <h4>Design Features Based on Family Input</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <div style="background-color: #e6fffa; padding: 1.5rem; border-radius: 8px;">
+                        <h5><i class="fas fa-bed" style="color: #38a169; margin-right: 0.5rem;"></i>Private/Semi-Private Rooms</h5>
+                        <p>Single or double patient rooms with space for parents to stay overnight, providing privacy, noise control, and individualized environments</p>
+                    </div>
+                    <div style="background-color: #e6fffa; padding: 1.5rem; border-radius: 8px;">
+                        <h5><i class="fas fa-home" style="color: #38a169; margin-right: 0.5rem;"></i>Family Lounge Areas</h5>
+                        <p>Comfortable spaces where parents can rest, prepare meals, connect with other families, and access educational resources</p>
+                    </div>
+                    <div style="background-color: #e6fffa; padding: 1.5rem; border-radius: 8px;">
+                        <h5><i class="fas fa-baby" style="color: #38a169; margin-right: 0.5rem;"></i>Kangaroo Care Spaces</h5>
+                        <p>Dedicated areas with comfortable chairs and privacy screens for skin-to-skin holding, with appropriate equipment nearby</p>
+                    </div>
+                    <div style="background-color: #e6fffa; padding: 1.5rem; border-radius: 8px;">
+                        <h5><i class="fas fa-pray" style="color: #38a169; margin-right: 0.5rem;"></i>Cultural Considerations</h5>
+                        <p>Design elements respecting Malaysia's diverse religious and cultural practices, including prayer rooms and culturally appropriate décor</p>
+                    </div>
+                    <div style="background-color: #e6fffa; padding: 1.5rem; border-radius: 8px;">
+                        <h5><i class="fas fa-phone-alt" style="color: #38a169; margin-right: 0.5rem;"></i>Communication Technology</h5>
+                        <p>Video conferencing systems allowing families unable to be present to see their baby and speak with the care team</p>
+                    </div>
+                    <div style="background-color: #e6fffa; padding: 1.5rem; border-radius: 8px;">
+                        <h5><i class="fas fa-graduation-cap" style="color: #38a169; margin-right: 0.5rem;"></i>Parent Education Center</h5>
+                        <p>Space dedicated to parent training and education, with multimedia resources in multiple languages</p>
+                    </div>
+                </div>
+                
+                <h4>Implementation Challenges</h4>
+                <ul>
+                    <li><strong>Budget Constraints:</strong> Balancing ideal design elements with financial limitations</li>
+                    <li><strong>Space Limitations:</strong> Working within the existing building footprint</li>
+                    <li><strong>Staffing Model Adjustments:</strong> Adapting nursing workflow from open bay to private room design</li>
+                    <li><strong>Technology Integration:</strong> Ensuring new monitoring systems functioned reliably in the redesigned space</li>
+                    <li><strong>Cultural Sensitivity:</strong> Accommodating diverse cultural and religious practices in the design</li>
+                </ul>
+                
+                <h4>Outcomes</h4>
+                <div style="margin: 1.5rem 0;">
+                    <h5>Quantitative Outcomes:</h5>
+                    <ul>
+                        <li>30% increase in parental presence at the bedside</li>
+                        <li>40% increase in kangaroo care hours</li>
+                        <li>25% reduction in nosocomial infection rates</li>
+                        <li>20% reduction in average length of stay</li>
+                        <li>18% improvement in staff satisfaction scores</li>
+                        <li>Significant reduction in ambient noise levels (65dB to 45dB)</li>
+                    </ul>
+                    
+                    <h5>Qualitative Outcomes:</h5>
+                    <ul>
+                        <li>Parents reported feeling more respected, comfortable, and involved in care</li>
+                        <li>Staff noted improved communication with families and higher family engagement</li>
+                        <li>Families from diverse backgrounds reported feeling their cultural needs were respected</li>
+                        <li>Improved transition to home reported by families</li>
+                    </ul>
+                </div>
+                
+                <h4>Discussion Questions</h4>
+                <ol>
+                    <li>How might this family-centered design process be adapted for redesigning other hospital spaces?</li>
+                    <li>What specific design elements address the needs of culturally diverse families in Malaysia?</li>
+                    <li>How could similar design approaches be implemented with very limited resources?</li>
+                    <li>What technology solutions could further enhance family involvement in the NICU?</li>
+                    <li>How does the physical environment impact the implementation of PFCC principles?</li>
+                </ol>
+                
+                <div style="margin-top: 2rem;">
+                    <button class="btn" onclick="showSection('quizzes'); loadQuiz(3);">Take Case Study Quiz</button>
+                </div>
+            </div>
+            
+            <!-- Case Study 4 (placeholder with more detail) -->
+            <div id="case-study4" class="case-study" style="display:none;">
+                <h3>Case Study 4: Emergency Department PFCC Implementation</h3>
+                
+                <div class="case-overview">
+                    <h4>Overview</h4>
+                    <p>This case study examines how Singapore General Hospital transformed their Emergency Department practices to implement PFCC principles in a high-acuity, fast-paced environment with diverse patient populations.</p>
+                </div>
+                
+                <h4>Key PFCC Initiatives Implemented</h4>
+                <ul>
+                    <li><strong>Family Presence During Resuscitation:</strong> Protocol allowing family members to be present during resuscitation efforts</li>
+                    <li><strong>Patient Navigation Program:</strong> Specially trained staff to guide patients and families through the ED process</li>
+                    <li><strong>Digital Information Boards:</strong> Real-time updates on wait times and process status</li>
+                    <li><strong>Multilingual Communication Tools:</strong> Resources to enhance communication with Singapore's diverse population</li>
+                    <li><strong>Cultural Competence Training:</strong> Staff education on cultural practices affecting emergency care</li>
+                </ul>
+                
+                <h4>Outcomes</h4>
+                <ul>
+                    <li>Improved patient satisfaction scores despite high patient volumes</li>
+                    <li>Reduced complaints related to communication issues</li>
+                    <li>Positive feedback from both families and staff regarding family presence during resuscitation</li>
+                    <li>Enhanced care coordination for patients requiring admission</li>
+                </ul>
+                
+                <div style="margin-top: 2rem;">
+                    <button class="btn" onclick="showSection('quizzes'); loadQuiz(4);">Take Case Study Quiz</button>
+                </div>
+            </div>
+            
+            <!-- Case Study 5 (placeholder with more detail) -->
+            <div id="case-study5" class="case-study" style="display:none;">
+                <h3>Case Study 5: Chronic Disease Management Partnerships in Southeast Asia</h3>
+                
+                <div class="case-overview">
+                    <h4>Overview</h4>
+                    <p>This case study examines a regional diabetes management program implemented across multiple countries in Southeast Asia, highlighting how PFCC principles were adapted to diverse healthcare systems, cultural contexts, and resource settings.</p>
+                </div>
+                
+                <h4>Key PFCC Elements</h4>
+                <ul>
+                    <li><strong>Culturally Adapted Self-Management Support:</strong> Education materials and approaches tailored to local food practices, family structures, and health beliefs</li>
+                    <li><strong>Community Health Worker Partnerships:</strong> Engagement of local community members as diabetes educators and support resources</li>
+                    <li><strong>Family Care Teams:</strong> Structured approach to involving family members in care planning and daily management</li>
+                    <li><strong>Digital Connection Platform:</strong> Mobile health application connecting patients, families, and healthcare teams with features adapted to local contexts</li>
+                    <li><strong>Faith-Based Partnerships:</strong> Collaboration with religious organizations to support behavior change aligned with cultural and spiritual practices</li>
+                </ul>
+                
+                <h4>Outcomes</h4>
+                <ul>
+                    <li>Improved glycemic control across diverse populations</li>
+                    <li>Increased patient activation and self-efficacy</li>
+                    <li>High program retention rates compared to traditional models</li>
+                    <li>Cost-effectiveness even in resource-constrained settings</li>
+                    <li>Successful adaptation across different healthcare financing systems</li>
+                </ul>
+                
+                <div style="margin-top: 2rem;">
+                    <button class="btn" onclick="showSection('quizzes'); loadQuiz(5);">Take Case Study Quiz</button>
+                </div>
+            </div>
+        </section><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient and Family-Centered Care Course</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta name="description" content="Professional development course on Patient and Family-Centered Care for healthcare providers. Learn to implement PFCC principles in your practice.">
+    <meta name="keywords" content="patient-centered care, family-centered care, healthcare, professional development, medical education">
+    <link rel="icon" href="https://via.placeholder.com/32" type="image/png">
+    <meta property="og:title" content="Patient and Family-Centered Care Course">
+    <meta property="og:description" content="Professional development course for healthcare providers on implementing PFCC principles.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630">
+    <meta property="og:url" content="https://yourwebsite.com/pfcc-course">
+    <meta name="twitter:card" content="summary_large_image">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        /* Header styling */
+        .header {
+            background-color: #1a56db;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://via.placeholder.com/1200x300') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header-right {
+            text-align: right;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header-right p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        /* Navigation styling */
+        .nav {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-list {
+            display: flex;
+            list-style: none;
+            padding: 0 2rem;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            display: block;
+            padding: 1rem;
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: #1a56db;
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.active {
+            color: #1a56db;
+            border-bottom: 3px solid #1a56db;
+        }
+        
+        /* Course progress bar */
+        .progress-container {
+            width: 100%;
+            background-color: #e2e8f0;
+            height: 5px;
+            position: relative;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: #1a56db;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+        
+        /* Content area styling */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Card styling */
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .card h3 {
+            color: #1a56db;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e1effe;
+        }
+        
+        .course-highlight {
+            padding: 1.5rem;
+            background-color: #f0f7ff;
+            border-radius: 8px;
+            border-left: 4px solid #1a56db;
+        }
+        
+        .course-highlight p {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .course-highlight p i {
+            margin-right: 10px;
+            color: #1a56db;
+        }
+        
+        /* Welcome section styling */
+        .welcome {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .welcome-text {
+            flex: 1;
+        }
+        
+        .welcome-highlights {
+            flex: 1;
+        }
+        
+        .welcome-carousel {
+            margin-top: 2rem;
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f7ff;
+            padding: 1rem;
+        }
+        
+        .carousel-slide.active {
+            opacity: 1;
+        }
+        
+        .testimony {
+            text-align: center;
+            max-width: 80%;
+        }
+        
+        .testimony-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .testimony-author {
+            font-weight: 600;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+        
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #cbd5e0;
+            cursor: pointer;
+        }
+        
+        .carousel-dot.active {
+            background-color: #1a56db;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #1a56db;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-right: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .btn:hover::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid #1a56db;
+            color: #1a56db;
+        }
+        
+        .btn:hover {
+            background-color: #1544ad;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline:hover {
+            background-color: #f0f7ff;
+        }
+        
+        /* Principles section styling */
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .principle-card {
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 8px;
+            transition: all 0.3s;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-top: 3px solid transparent;
+        }
+        
+        .principle-card:hover {
+            transform: translateY(-5px);
+            border-top: 3px solid #1a56db;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .principle-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #e1effe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            transition: all 0.3s;
+        }
+        
+        .principle-card:hover .principle-icon {
+            transform: scale(1.1);
+            background-color: #1a56db;
+        }
+        
+        .principle-card:hover .principle-icon i {
+            color: white;
+        }
+        
+        .principle-icon i {
+            color: #1a56db;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        /* Schedule styling */
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .schedule-table th, .schedule-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .schedule-table thead {
+            background-color: #1a56db;
+            color: white;
+        }
+        
+        .schedule-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        .schedule-table tr:hover {
+            background-color: #e1effe;
+        }
+        
+        /* Learning outcomes styling */
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .outcome-list {
+            list-style-position: inside;
+            margin-top: 1rem;
+        }
+        
+        .outcome-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .outcome-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 8px;
+            height: 8px;
+            background-color: #1a56db;
+            border-radius: 50%;
+        }
+        
+        /* Trends section styling */
+        .trends-container {
+            margin-top: 2rem;
+        }
+        
+        .trend-item {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #1a56db;
+            transition: transform 0.3s;
+        }
+        
+        .trend-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .trend-title {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .trend-title i {
+            margin-right: 0.5rem;
+            color: #1a56db;
+        }
+        
+        /* Slides styling */
+        .slide-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            min-height: 500px;
+        }
+        
+        .slides {
+            position: relative;
+            min-height: 400px;
+            padding: 2rem;
+        }
+        
+        .slide {
+            display: none;
+            animation: fadeSlide 0.5s ease;
+            padding: 1rem;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .slide-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .slide-title {
+            font-size: 1.75rem;
+            color: #1a56db;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e1effe;
+        }
+        
+        .slide-body {
+            font-size: 1.1rem;
+        }
+        
+        .slide-list {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .slide-list li {
+            margin-bottom: 1rem;
+        }
+        
+        .slide-image {
+            max-width: 100%;
+            height: auto;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .slide-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        
+        .slide-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .slide-counter {
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+        
+        .slide-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .slide-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #cbd5e0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .slide-dot:hover {
+            background-color: #a0aec0;
+        }
+        
+        .slide-dot.active {
+            background-color: #1a56db;
+        }
+        
+        .slide-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        /* Highlight box */
+        .highlight-box {
+            padding: 1.5rem;
+            background-color: #f0f7ff;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #1a56db;
+        }
+        
+        .evidence-box {
+            padding: 1.5rem;
+            background-color: #f0fff4;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #38a169;
+        }
+        
+        .evidence-box h4 {
+            color: #38a169;
+            margin-bottom: 1rem;
+        }
+        
+        .example-box {
+            padding: 1.5rem;
+            background-color: #fff5f5;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #e53e3e;
+        }
+        
+        .example-box h4 {
+            color: #e53e3e;
+            margin-bottom: 1rem;
+        }
+        
+        /* Quiz styling */
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .quiz-question {
+            margin-bottom: 2rem;
+        }
+        
+        .quiz-options {
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .quiz-option {
+            padding: 1rem;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        
+        .quiz-option:hover {
+            background-color: #e1effe;
+            transform: translateX(5px);
+        }
+        
+        .quiz-option::before {
+            content: "";
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            border: 1px solid #cbd5e0;
+            border-radius: 50%;
+        }
+        
+        .quiz-option.selected {
+            background-color: #1a56db;
+            color: white;
+            border-color: #1a56db;
+        }
+        
+        .quiz-option.selected::before {
+            background-color: white;
+            border-color: white;
+        }
+        
+        .quiz-option.selected::after {
+            content: "";
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: #1a56db;
+            border-radius: 50%;
+            margin-left: 4px;
+            margin-top: 0px;
+        }
+        
+        .quiz-feedback {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .quiz-feedback.correct {
+            background-color: #c6f6d5;
+            color: #22543d;
+            border-left: 4px solid #38a169;
+        }
+        
+        .quiz-feedback.incorrect {
+            background-color: #fed7d7;
+            color: #822727;
+            border-left: 4px solid #e53e3e;
+        }
+        
+        .quiz-score-container {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: #f0f7ff;
+            border-radius: 8px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .quiz-score {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a56db;
+        }
+        
+        .quiz-badge {
+            width: 100px;
+            height: 100px;
+            margin: 1rem auto;
+            border-radius: 50%;
+            background-color: #1a56db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .quiz-badge::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px dashed white;
+            border-radius: 50%;
+            animation: spin 20s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Case study styling */
+        .case-study {
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .case-overview {
+            background-color: #f0f7ff;
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #1a56db;
+        }
+        
+        .case-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        /* Enrollment form styling */
+        .enrollment-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #1a56db;
+            box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.3);
+        }
+        
+        .form-input.error {
+            border-color: #e53e3e;
+        }
+        
+        .error-message {
+            color: #e53e3e;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        .form-success {
+            display: none;
+            padding: 1.5rem;
+            background-color: #c6f6d5;
+            color: #22543d;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        /* Resource library */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .resource-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .resource-image {
+            height: 150px;
+            background-color: #e1effe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .resource-image i {
+            font-size: 3rem;
+            color: #1a56db;
+        }
+        
+        .resource-content {
+            padding: 1rem;
+        }
+        
+        .resource-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .resource-type {
+            font-size: 0.875rem;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .resource-type i {
+            margin-right: 0.25rem;
+            color: #1a56db;
+        }
+        
+        .resource-actions {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        /* Footer styling */
+        .footer {
+            background-color: #2d3748;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #4a5568;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a i {
+            margin-right: 0.5rem;
+        }
+        
+        .footer-links a:hover {
+            color: #90cdf4;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid #4a5568;
+            font-size: 0.875rem;
+            color: #a0aec0;
+        }
+        
+        /* Loading animation */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid #1a56db;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+            display: none;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #4a5568;
+            transition: color 0.3s;
+        }
+        
+        .modal-close:hover {
+            color: #1a56db;
+        }
+        
+        .modal-title {
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e1effe;
+            color: #1a56db;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .welcome {
+                flex-direction: column;
+            }
+            
+            .principles {
+                grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+            }
+            
+            .nav-list {
+                padding: 0 1rem;
+            }
+            
+            .nav-link {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .slide-columns {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Tooltip styling */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+        
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: #2d3748;
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 0.5rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.875rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Theme switch */
+        .theme-switch-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 100;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .theme-switch-container:hover {
+            transform: scale(1.1);
+        }
+        
+        .theme-switch-icon {
+            font-size: 1.5rem;
+            color: #1a56db;
+        }
+        
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        
+        body.dark-mode .card,
+        body.dark-mode .slide-container,
+        body.dark-mode .quiz-container,
+        body.dark-mode .case-study,
+        body.dark-mode .enrollment-form,
+        body.dark-mode .resource-card,
+        body.dark-mode .nav,
+        body.dark-mode .modal-content {
+            background-color: #2d3748;
+            color: #e2e8f0;
+        }
+        
+        body.dark-mode .form-input,
+        body.dark-mode .quiz-option {
+            background-color: #4a5568;
+            border-color: #718096;
+            color: #e2e8f0;
+        }
+        
+        body.dark-mode .form-input:focus {
+            border-color: #90cdf4;
+        }
+        
+        body.dark-mode .card h3,
+        body.dark-mode .slide-title,
+        body.dark-mode .modal-title {
+            color: #90cdf4;
+            border-bottom-color: #4a5568;
+        }
+        
+        body.dark-mode .header {
+            background-color: #2d3748;
+        }
+        
+        body.dark-mode .nav-link {
+            color: #e2e8f0;
+        }
+        
+        body.dark-mode .nav-link.active,
+        body.dark-mode .nav-link:hover {
+            color: #90cdf4;
+        }
+        
+        body.dark-mode .nav-link.active {
+            border-bottom-color: #90cdf4;
+        }
+        
+        body.dark-mode .btn {
+            background-color: #4299e1;
+        }
+        
+        body.dark-mode .btn:hover {
+            background-color: #3182ce;
+        }
+        
+        body.dark-mode .btn-outline {
+            border-color: #4299e1;
+            color: #4299e1;
+            background-color: transparent;
+        }
+        
+        body.dark-mode .highlight-box,
+        body.dark-mode .course-highlight {
+            background-color: #2d3748;
+            border-left-color: #4299e1;
+        }
+        
+        body.dark-mode .slide-navigation,
+        body.dark-mode .schedule-table tr:nth-child(even) {
+            background-color: #2d3748;
+        }
+        
+        body.dark-mode .schedule-table thead {
+            background-color: #4299e1;
+        }
+        
+        body.dark-mode .footer {
+            background-color: #1a202c;
+        }
+        
+        /* Print styles */
+        @media print {
+            .nav, .header-right, .slide-navigation, .btn, .footer {
+                display: none !important;
+            }
+            
+            .content-section, .slide, .lecture-slides {
+                display: block !important;
+            }
+            
+            body {
+                background-color: white;
+                color: black;
+                font-size: 12pt;
+            }
+            
+            .container {
+                max-width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .card, .slide-container, .case-study {
+                box-shadow: none;
+                margin-bottom: 1rem;
+                page-break-inside: avoid;
+            }
+            
+            a {
+                color: black;
+                text-decoration: none;
+            }
+            
+            .slide-dot, .carousel-dot, .theme-switch-container {
+                display: none;
+            }
+        }

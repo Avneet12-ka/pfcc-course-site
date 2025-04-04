@@ -1,0 +1,22 @@
+function showLecture(lectureNum) {
+    // Hide all lecture slides
+    const lectureSlides = document.querySelectorAll('.lecture-slides');
+    lectureSlides.forEach(slide => {
+        slide.style.display = 'none';
+    });
+    
+    // Show selected lecture
+    document.getElementById('lecture' + lectureNum).style.display = 'block';
+    
+    // Scroll to lecture
+    document.getElementById('lecture' + lectureNum).scrollIntoView();
+    
+    // Update active class for lecture nav links
+    const lectureLinks = document.querySelectorAll('#lectures .nav-list .nav-link');
+    lectureLinks.forEach((link, index) => {
+        link.classList.remove('active');
+        if (index === lectureNum - 1) {
+            link.classList.add('active');
+        }
+    });
+}

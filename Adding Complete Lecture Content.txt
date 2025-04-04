@@ -1,0 +1,114 @@
+<!-- Replace the current Lecture 3 content with this -->
+<div id="lecture3" class="lecture-slides" style="display:none;">
+    <div class="slide-container">
+        <div class="slides">
+            <!-- Slide 1 -->
+            <div class="slide active" data-slide="1">
+                <div class="slide-content">
+                    <h2 class="slide-title">Communication Skills for PFCC</h2>
+                    <div class="slide-body">
+                        <p>Effective communication is the foundation of successful Patient and Family-Centered Care implementation.</p>
+                        
+                        <div class="slide-columns">
+                            <div>
+                                <h4>Learning Objectives</h4>
+                                <ul class="slide-list">
+                                    <li>Identify key elements of effective communication in PFCC</li>
+                                    <li>Apply strategies for sharing information with patients and families</li>
+                                    <li>Use techniques for active listening and empathetic response</li>
+                                    <li>Adapt communication approaches to diverse cultural contexts</li>
+                                    <li>Implement shared decision-making processes</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4>Module Overview</h4>
+                                <ul class="slide-list">
+                                    <li>Core communication skills</li>
+                                    <li>Cultural considerations in communication</li>
+                                    <li>Tools for shared decision-making</li>
+                                    <li>Strategies for difficult conversations</li>
+                                    <li>Digital communication technologies</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="slide" data-slide="2">
+                <div class="slide-content">
+                    <h2 class="slide-title">Core Communication Skills in PFCC</h2>
+                    <div class="slide-body">
+                        <p>Effective PFCC requires mastery of specific communication skills that build trust and partnership.</p>
+                        
+                        <div style="background-color: #f0f7ff; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+                            <h4>Essential Communication Skills</h4>
+                            <ul class="slide-list">
+                                <li><strong>Active Listening:</strong> Fully focusing on the speaker, demonstrating attention, and providing feedback</li>
+                                <li><strong>Plain Language:</strong> Using jargon-free, clear communication appropriate to health literacy levels</li>
+                                <li><strong>Teach-Back Method:</strong> Asking patients to explain information in their own words to verify understanding</li>
+                                <li><strong>Empathetic Response:</strong> Acknowledging emotions and demonstrating understanding</li>
+                                <li><strong>Non-verbal Communication:</strong> Being aware of body language, facial expressions, and physical positioning</li>
+                            </ul>
+                        </div>
+                        
+                        <p>Research shows that healthcare providers typically interrupt patients within the first 11-18 seconds of their speaking. Active listening means allowing patients to fully express their concerns before responding.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="slide" data-slide="3">
+                <div class="slide-content">
+                    <h2 class="slide-title">Cultural Considerations in Communication</h2>
+                    <div class="slide-body">
+                        <p>Cultural factors significantly influence healthcare communication and must be considered in PFCC implementation.</p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 1.5rem 0;">
+                            <div style="background-color: #f0f7ff; padding: 1rem; border-radius: 8px;">
+                                <h4>Cultural Dimensions Affecting Communication</h4>
+                                <ul>
+                                    <li><strong>Collectivism vs. Individualism:</strong> How decisions are made within family and community structures</li>
+                                    <li><strong>Power Distance:</strong> How authority and hierarchy influence provider-patient interactions</li>
+                                    <li><strong>Communication Style:</strong> Direct vs. indirect communication preferences</li>
+                                    <li><strong>Time Orientation:</strong> Different perspectives on punctuality, scheduling, and future planning</li>
+                                </ul>
+                            </div>
+                            <div style="background-color: #f0f7ff; padding: 1rem; border-radius: 8px;">
+                                <h4>Effective Cross-Cultural Communication</h4>
+                                <ul>
+                                    <li>Assess your own cultural biases and assumptions</li>
+                                    <li>Ask about communication preferences</li>
+                                    <li>Use professional interpreters when needed</li>
+                                    <li>Validate understanding across cultural differences</li>
+                                    <li>Adapt your approach based on cultural context</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p>A culturally competent approach avoids stereotyping while recognizing the influence of culture on healthcare expectations and communication patterns.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional slides would continue here -->
+        </div>
+        
+        <!-- Navigation controls -->
+        <div class="slide-navigation">
+            <div class="slide-counter">
+                Slide <span id="current-slide-lec3">1</span> of <span id="total-slides-lec3">3</span>
+            </div>
+            <div class="slide-dots">
+                <span class="slide-dot active" onclick="goToSlideLec3(1)"></span>
+                <span class="slide-dot" onclick="goToSlideLec3(2)"></span>
+                <span class="slide-dot" onclick="goToSlideLec3(3)"></span>
+            </div>
+            <div class="slide-buttons">
+                <button class="btn btn-outline" onclick="prevSlideLec3()">Previous</button>
+                <button class="btn" onclick="nextSlideLec3()">Next</button>
+            </div>
+        </div>
+    </div>
+</div>

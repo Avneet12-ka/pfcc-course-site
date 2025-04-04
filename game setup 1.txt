@@ -1,0 +1,65 @@
+// Core game structure
+const pccGame = {
+  player: {
+    profile: {},
+    progress: {
+      currentLevel: 1,
+      completedLevels: [],
+      reflections: []
+    }
+  },
+  
+  levels: [
+    // Level configurations with scenarios, questions, etc.
+  ],
+  
+  // Game mechanics
+  initGame() {
+    // Initialize game state
+    this.loadProgress();
+    this.renderCurrentLevel();
+  },
+  
+  renderCurrentLevel() {
+    // Display current level content
+    const level = this.levels[this.player.progress.currentLevel - 1];
+    // Render level content to DOM
+  },
+  
+  handleChoice(choiceId) {
+    // Process player's choices in scenarios
+  },
+  
+  saveReflection(reflectionText, levelId) {
+    // Save player's written reflections
+    this.player.progress.reflections.push({
+      levelId,
+      text: reflectionText,
+      timestamp: new Date()
+    });
+    this.saveProgress();
+  },
+  
+  completeLevel(levelId) {
+    // Mark level as complete and progress player
+    if (!this.player.progress.completedLevels.includes(levelId)) {
+      this.player.progress.completedLevels.push(levelId);
+    }
+    this.player.progress.currentLevel = Math.min(levelId + 1, this.levels.length);
+    this.saveProgress();
+    this.renderCurrentLevel();
+  },
+  
+  saveProgress() {
+    // Save game progress to localStorage or server
+    localStorage.setItem('pccGameProgress', JSON.stringify(this.player.progress));
+  },
+  
+  loadProgress() {
+    // Load saved progress
+    const savedProgress = localStorage.getItem('pccGameProgress');
+    if (savedProgress) {
+      this.player.progress = JSON.parse(savedProgress);
+    }
+  }
+};

@@ -1,0 +1,44 @@
+<div class="resource-card">
+    <div class="resource-image">
+        <i class="fas fa-file-pdf"></i>
+    </div>
+    <div class="resource-content">
+        <div class="resource-title">PFCC Implementation Guide</div>
+        <div class="resource-type"><i class="fas fa-file-pdf"></i> PDF Guide</div>
+        <p>Comprehensive guide to implementing PFCC in various healthcare settings.</p>
+        <div class="resource-actions">
+            <a href="resources/pfcc_implementation_guide.pdf" download class="btn btn-outline btn-sm">Download</a>
+            <span><i class="fas fa-download"></i> 487</span>
+        </div>
+    </div>
+</div>
+
+<div class="resource-card">
+    <div class="resource-image">
+        <i class="fas fa-folder"></i>
+    </div>
+    <div class="resource-content">
+        <div class="resource-title">PFAC Toolkit</div>
+        <div class="resource-type"><i class="fas fa-file-archive"></i> Multiple Files</div>
+        <p>Tools and templates for establishing effective Patient and Family Advisory Councils.</p>
+        <div class="resource-actions">
+            <a href="resources/pfac_toolkit.zip" download class="btn btn-outline btn-sm">Download</a>
+            <span><i class="fas fa-download"></i> 312</span>
+        </div>
+    </div>
+</div>
+
+<div class="resource-card">
+    <div class="resource-image">
+        <i class="fas fa-file-excel"></i>
+    </div>
+    <div class="resource-content">
+        <div class="resource-title">PFCC Assessment Tool</div>
+        <div class="resource-type"><i class="fas fa-file-excel"></i> Excel Tool</div>
+        <p>Self-assessment tool for evaluating PFCC implementation in your organization.</p>
+        <div class="resource-actions">
+            <a href="resources/pfcc_assessment_tool.xlsx" download class="btn btn-outline btn-sm">Download</a>
+            <span><i class="fas fa-download"></i> 256</span>
+        </div>
+    </div>
+</div>

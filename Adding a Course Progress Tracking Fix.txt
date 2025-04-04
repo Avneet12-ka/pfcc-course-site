@@ -1,0 +1,24 @@
+// Initialize progress tracking
+function initializeProgressTracking() {
+    const lectureProgress = JSON.parse(localStorage.getItem('lectureProgress') || '{}');
+    const caseProgress = JSON.parse(localStorage.getItem('caseProgress') || '{}');
+    const quizProgress = JSON.parse(localStorage.getItem('quizProgress') || '{}');
+    
+    // Update UI to show progress
+    for (const lectureId in lectureProgress) {
+        if (lectureProgress[lectureId].completed) {
+            const lectureLink = document.querySelector(`#lectures a[href="#lecture${lectureId}"]`);
+            if (lectureLink) {
+                lectureLink.innerHTML += ' <i class="fas fa-check-circle" style="color: #38a169;"></i>';
+            }
+        }
+    }
+    
+    // Update progress bar
+    updateProgressBar();
+}
+
+// Call this on page load
+document.addEventListener('DOMContentLoaded', function() {
+    initializeProgressTracking();
+});

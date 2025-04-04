@@ -1,0 +1,13 @@
+// Update the Case Study 1 button
+document.querySelector('#case-study1 .btn').addEventListener('click', function() {
+    showSection('quizzes');
+    loadQuiz(1);
+});
+
+// Update the Case Study 2 button
+document.querySelector('#case-study2 .btn').addEventListener('click', function() {
+    showSection('quizzes');
+    loadQuiz(2);
+});
+
+// Continue for all case studies

@@ -1,0 +1,15 @@
+// Add this to the download buttons
+document.querySelectorAll('.resource-actions .btn').forEach(button => {
+    button.addEventListener('click', function(e) {
+        // Prevent default to avoid attempting actual download
+        e.preventDefault();
+        
+        // Show a message
+        alert("In a production environment, this would download the resource file. For this demo, please imagine the file has been downloaded.");
+        
+        // Update download counter visually for demo purposes
+        const downloadCount = this.nextElementSibling;
+        const currentCount = parseInt(downloadCount.textContent.match(/\d+/)[0]);
+        downloadCount.innerHTML = `<i class="fas fa-download"></i> ${currentCount + 1}`;
+    });
+});

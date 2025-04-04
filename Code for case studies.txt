@@ -1,0 +1,26 @@
+function showCaseStudy(caseNum) {
+    // Hide all case studies
+    const caseStudies = document.querySelectorAll('.case-study');
+    caseStudies.forEach(caseStudy => {
+        caseStudy.style.display = 'none';
+    });
+    
+    // Show selected case study
+    document.getElementById('case-study' + caseNum).style.display = 'block';
+    
+    // Scroll to case study
+    document.getElementById('case-study' + caseNum).scrollIntoView();
+    
+    // Update local storage to track viewing of this case study
+    const viewedCases = JSON.parse(localStorage.getItem('viewedCases') || '[]');
+    if (!viewedCases.includes(caseNum)) {
+        viewedCases.push(caseNum);
+        localStorage.setItem('viewedCases', JSON.stringify(viewedCases));
+    }
+}
+
+// Add this to quiz buttons in case studies
+function takeCaseStudyQuiz(caseNum) {
+    showSection('quizzes');
+    loadQuiz(caseNum); // Make sure quizzes are numbered to match case studies
+}
