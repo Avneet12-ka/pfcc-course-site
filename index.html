@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient and Family-Centered Care Course</title>
+    <!-- Tailwind CSS via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome via jsdelivr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css">
+    <style>
+        /* Custom styles */
+        .slide {
+            display: none;
+        }
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal.show {
+            display: flex;
+        }
+        .modal-content {
+            background-color: white;
+            border-radius: 8px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .progress-bar {
+            height: 5px;
+            background-color: #e2e8f0;
+            width: 100%;
+            position: relative;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: #1a56db;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .case-study, .lecture-slides, .game-container, .quiz-container, .resource-library {
+            display: none;
+        }
+        .signature-name {
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid #2d3748;
+            padding-bottom: 0.5rem;
+        }
+        .slide-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #cbd5e0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 0 3px;
+        }
+        .slide-dot.active {
+            background-color: #1a56db;
+        }
+        /* Game styles */
+        .scenario-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .choice-btn {
+            width: 100%;
+            text-align: left;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            background-color: #f8fafc;
+            transition: all 0.3s;
+        }
+        .choice-btn:hover {
+            background-color: #edf2f7;
+            transform: translateY(-2px);
+        }
+        .feedback-container {
+            background-color: #f0f7ff;
+            border-left: 4px solid #1a56db;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            display: none;
+        }
+        .reflection-container {
+            margin-top: 1.5rem;
+            display: none;
+        }
+        .quiz-option {
+            padding: 1rem;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        .quiz-option:hover {
+            background-color: #e1effe;
+            transform: translateX(5px);
+        }
+        .quiz-option::before {
+            content: "";
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            border: 1px solid #cbd5e0;
+            border-radius: 50%;
+        }
+        .quiz-option.selected {
+            background-color: #1a56db;
+            color: white;
+            border-color: #1a56db;
+        }
+        .quiz-option.selected::before {
+            background-color: white;
+            border-color: white;
+        }
+        .quiz-feedback {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .quiz-feedback.correct {
+            background-color: #c6f6d5;
+            color: #22543d;
+            border-left: 4px solid #38a169;
+        }
+        .quiz-feedback.incorrect {
+            background-color: #fed7d7;
+            color: #822727;
+            border-left: 4px solid #e53e3e;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-blue-700 text-white py-6 px-4 md:px-8">
+        <div class="container mx-auto">
+            <div class="flex flex-wrap justify-between items-center">
+                <h1 class="text-2xl font-bold">Patient and Family-Centered Care</h1>
+                <div class="text-right">
+                    <p class="text-sm">One-Week Intensive Course</p>
+                    <p class="text-sm">Professional Development for Healthcare Providers</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto">
+            <ul class="flex flex-wrap text-sm md:text-base">
+                <li><a href="#" class="nav-link active block px-4 py-3 font-medium hover:text-blue-700 border-b-2 border-blue-700 transition-colors" onclick="showSection('home'); return false;">Home</a></li>
+                <li><a href="#" class="nav-link block px-4 py-3 font-medium hover:text-blue-700 border-b-2 border-transparent hover:border-blue-700 transition-colors" onclick="showSection('lectures'); return false;">Lectures</a></li>
+                <li><a href="#" class="nav-link block px-4 py-3 font-medium hover:text-blue-700 border-b-2 border-transparent hover:border-blue-700 transition-colors" onclick="showSection('case-studies'); return false;">Case Studies</a></li>
+                <li><a href="#" class="nav-link block px-4 py-3 font-medium hover:text-blue-700 border-b-2 border-transparent hover:border-blue-700 transition-colors" onclick="showSection('quizzes'); return false;">Quizzes</a></li>
+                <li><a href="#" class="nav-link block px-4 py-3 font-medium hover:text-blue-700 border-b-2 border-transparent hover:border-blue-700 transition-colors" onclick="showSection('resources'); return false;">Resources</a></li>
+                <li><a href="#" class="nav-link block px-4 py-3 font-medium hover:text-blue-700 border-b-2 border-transparent hover:border-blue-700 transition-colors" onclick="showSection('game'); return false;">Interactive Game</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Progress Tracking -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- Home Section -->
+        <section id="home" class="mb-16">
+            <div class="flex flex-col md:flex-row gap-8 mb-8">
+                <div class="flex-1">
+                    <h2 class="text-2xl font-bold text-blue-800 mb-4">Welcome to Patient and Family-Centered Care</h2>
+                    <p class="mb-4">This one-week intensive course is designed to provide healthcare professionals with the knowledge and skills needed to implement patient and family-centered care approaches in various healthcare settings.</p>
+                    <p class="mb-4">The course combines theoretical foundations with practical case studies and interactive learning to help you transform your practice.</p>
+                    <div class="mt-6">
+                        <button class="inline-block px-4 py-2 bg-blue-700 text-white rounded font-medium hover:bg-blue-800 transition-colors" onclick="showSection('lectures'); return false;">Start Learning</button>
+                        <button class="inline-block px-4 py-2 border border-blue-700 text-blue-700 rounded font-medium ml-2 hover:bg-blue-50 transition-colors" onclick="showModal('welcome-modal'); return false;">Course Overview</button>
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-700">
+                        <h3 class="text-xl font-semibold mb-4">Course Highlights</h3>
+                        <p class="flex items-center mb-3"><i class="fas fa-calendar-alt text-blue-700 mr-3"></i> <strong>Duration:</strong> One-week intensive (Monday to Friday)</p>
+                        <p class="flex items-center mb-3"><i class="fas fa-book text-blue-700 mr-3"></i> <strong>5 Lectures:</strong> Comprehensive modules covering all aspects of PFCC</p>
+                        <p class="flex items-center mb-3"><i class="fas fa-user-md text-blue-700 mr-3"></i> <strong>5 Case Studies:</strong> Real-world applications and examples</p>
+                        <p class="flex items-center mb-3"><i class="fas fa-tasks text-blue-700 mr-3"></i> <strong>Interactive Quizzes:</strong> Test your knowledge as you learn</p>
+                        <p class="flex items-center mb-3"><i class="fas fa-certificate text-blue-700 mr-3"></i> <strong>Certificate:</strong> Upon successful completion of the course</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h3 class="text-xl font-bold text-blue-800 mb-4 pb-2 border-b border-blue-100">The Four Core Principles</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+                    <div class="p-4 text-center rounded-lg hover:shadow-md transition-all transform hover:-translate-y-1 border-t-2 border-transparent hover:border-blue-700">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user-shield text-blue-700 text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Dignity and Respect</h4>
+                        <p class="text-sm">Healthcare practitioners listen to and honor patient and family perspectives and choices.</p>
+                    </div>
+                    <div class="p-4 text-center rounded-lg hover:shadow-md transition-all transform hover:-translate-y-1 border-t-2 border-transparent hover:border-blue-700">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-share-alt text-blue-700 text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Information Sharing</h4>
+                        <p class="text-sm">Communicating complete and unbiased information with patients and families in affirming ways.</p>
+                    </div>
+                    <div class="p-4 text-center rounded-lg hover:shadow-md transition-all transform hover:-translate-y-1 border-t-2 border-transparent hover:border-blue-700">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-users text-blue-700 text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Participation</h4>
+                        <p class="text-sm">Patients and families are encouraged and supported in care and decision-making at their chosen level.</p>
+                    </div>
+                    <div class="p-4 text-center rounded-lg hover:shadow-md transition-all transform hover:-translate-y-1 border-t-2 border-transparent hover:border-blue-700">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-hands-helping text-blue-700 text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Collaboration</h4>
+                        <p class="text-sm">Patients, families, and healthcare practitioners collaborate in policy, program development, and care delivery.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h3 class="text-xl font-bold text-blue-800 mb-4">Weekly Schedule</h3>
+                <div class="overflow-auto">
+                    <table class="w-full border-collapse">
+                        <thead class="bg-blue-700 text-white">
+                            <tr>
+                                <th class="border px-4 py-2 text-left">Day</th>
+                                <th class="border px-4 py-2 text-left">Morning Session (9am-12pm)</th>
+                                <th class="border px-4 py-2 text-left">Afternoon Session (1pm-4pm)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="hover:bg-blue-50">
+                                <td class="border px-4 py-2">Monday</td>
+                                <td class="border px-4 py-2">Lecture 1: Foundations of PFCC</td>
+                                <td class="border px-4 py-2">Case Study 1: Bronson Methodist Hospital</td>
+                            </tr>
+                            <tr class="bg-gray-50 hover:bg-blue-50">
+                                <td class="border px-4 py-2">Tuesday</td>
+                                <td class="border px-4 py-2">Lecture 2: Core Principles in Practice</td>
+                                <td class="border px-4 py-2">Case Study 2: Pediatric ICU Family Involvement</td>
+                            </tr>
+                            <tr class="hover:bg-blue-50">
+                                <td class="border px-4 py-2">Wednesday</td>
+                                <td class="border px-4 py-2">Lecture 3: Communication Skills for PFCC</td>
+                                <td class="border px-4 py-2">Case Study 3: NICU Design with Patient/Family Input</td>
+                            </tr>
+                            <tr class="bg-gray-50 hover:bg-blue-50">
+                                <td class="border px-4 py-2">Thursday</td>
+                                <td class="border px-4 py-2">Lecture 4: Building Systems to Support PFCC</td>
+                                <td class="border px-4 py-2">Case Study 4: Emergency Department PFCC Implementation</td>
+                            </tr>
+                            <tr class="hover:bg-blue-50">
+                                <td class="border px-4 py-2">Friday</td>
+                                <td class="border px-4 py-2">Lecture 5: Measuring and Improving PFCC Outcomes</td>
+                                <td class="border px-4 py-2">Case Study 5: Chronic Disease Management Partnerships</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-sm mt-2">* Daily assessment quizzes will be available following each lecture and case study.</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold text-blue-800 mb-4">Learning Outcomes</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+                    <div>
+                        <h4 class="flex items-center font-semibold mb-3">
+                            <i class="fas fa-check-circle text-green-600 mr-2"></i> Knowledge
+                        </h4>
+                        <ul class="ml-6 space-y-2">
+                            <li class="relative pl-5">
+                                <span class="absolute left-0 top-2 w-2 h-2 bg-blue-700 rounded-full"></span>
+                                Define Patient and Family-Centered Care and its importance
+                            </li>
+                            <li class="relative pl-5">
+                                <span class="absolute left-0 top-2 w-2 h-2 bg-blue-700 rounded-full"></span>
+                                Identify the four core principles of PFCC
+                            </li>
+                            <li class="relative pl-5">
+                                <span class="absolute left-0 top-2 w-2 h-2 bg-blue-700 rounded-full"></span>
+                                Explain how PFCC evolved historically in healthcare
+                            </li>
+                            <li class="relative pl-5">
+                                <span class="absolute left-0 top-2 w-2 h-2 bg-blue-700 rounded-full"></span>
+                                Discuss the evidence supporting PFCC implementation
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="flex items-center font-semibold mb-3">
+                            <i class="fas fa-tools text-blue-600 mr-2"></i> Skills
+                        </h4>
+                        <ul class="ml-6 space-y-2">
+                            <li class="relative pl-5">
+                                <span class="absolute left-0 top-2 w-2 h-2 bg-blue-700 rounded-full"></span>
+                                Apply PFCC principles in clinical practice
+                            </li>
+                            <li class="relative pl-5">
+                                <span class="absolute left-0 top-2 w-2 h-2 bg-blue-700 rounded-full"></span>
+                                Develop effective communication strategies
+                            </li>
+                            <li class="relative pl-5">
+                                <span class="absolute left-0 top-2 w-2 h-2 bg-blue-700 rounded-full"></span>
+                                Implement systems that support PFCC
+                            </li>
+                            <li class="relative pl-5">
+                                <span class="absolute left-0 top-2 w-2 h-2 bg-blue-700 rounded-full"></span>
+                                Measure and evaluate PFCC outcomes
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lectures Section -->
+        <section id="lectures" class="mb-16" style="display:none;">
+            <h2 class="text-2xl font-bold text-blue-800 mb-4">Course Lectures</h2>
+            <p class="mb-6">Select a lecture to view its content:</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-700">
+                        <h3 class="font-medium">Lecture 1</h3>
+                        <p class="text-sm text-gray-600">Foundations of PFCC</p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm mb-4">An introduction to the core concepts and historical development of Patient and Family-Centered Care.</p>
+                        <button class="inline-block px-4 py-2 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors" onclick="showLecture(1)">View Lecture</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-700">
+                        <h3 class="font-medium">Lecture 2</h3>
+                        <p class="text-sm text-gray-600">Core Principles in Practice</p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm mb-4">Practical application of the four core PFCC principles in different healthcare settings.</p>
+                        <button class="inline-block px-4 py-2 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors" onclick="showLecture(2)">View Lecture</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-700">
+                        <h3 class="font-medium">Lecture 3</h3>
+                        <p class="text-sm text-gray-600">Communication Skills for PFCC</p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm mb-4">Essential communication strategies that support effective implementation of PFCC.</p>
+                        <button class="inline-block px-4 py-2 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors" onclick="showLecture(3)">View Lecture</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-700">
+                        <h3 class="font-medium">Lecture 4</h3>
+                        <p class="text-sm text-gray-600">Building Systems to Support PFCC</p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm mb-4">Organizational approaches to implement and sustain PFCC at the system level.</p>
+                        <button class="inline-block px-4 py-2 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors" onclick="showLecture(4)">View Lecture</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-700">
+                        <h3 class="font-medium">Lecture 5</h3>
+                        <p class="text-sm text-gray-600">Measuring and Improving PFCC Outcomes</p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm mb-4">Methods for evaluating PFCC implementation and using data to drive improvements.</p>
+                        <button class="inline-block px-4 py-2 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors" onclick="showLecture(5)">View Lecture</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lecture Content Display Area -->
+            <div id="lecture1" class="lecture-slides bg-white rounded-lg shadow-md">
+                <div class="slide-container">
+                    <div class="slides">
+                        <!-- Slide 1 -->
+                        <div class="slide active" data-slide="1">
+                            <div class="slide-content p-6">
+                                <h2 class="text-2xl font-bold text-blue-800 mb-4">Foundations of Patient and Family-Centered Care</h2>
+                                <div class="mb-6">
+                                    <p class="mb-4">This introductory lecture establishes the fundamental principles and historical development of Patient and Family-Centered Care, exploring its evolution and evidence base.</p>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                        <div>
+                                            <h4 class="font-semibold mb-2">Learning Objectives</h4>
+                                            <ul class="list-disc pl-5 space-y-1">
+                                                <li>Define Patient and Family-Centered Care and its importance in healthcare</li>
+                                                <li>Identify the four core principles of PFCC</li>
+                                                <li>Explain how PFCC evolved historically in healthcare settings</li>
+                                                <li>Discuss the evidence supporting PFCC implementation</li>
+                                                <li>Recognize barriers to implementing PFCC in different settings</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold mb-2">Key Topics</h4>
+                                            <ul class="list-disc pl-5 space-y-1">
+                                                <li>Historical development of PFCC</li>
+                                                <li>Evolution from provider-centered to patient-centered models</li>
+                                                <li>Evidence supporting PFCC approaches</li>
+                                                <li>The four core principles of PFCC</li>
+                                                <li>Ethical foundations of PFCC</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 2 -->
+                        <div class="slide" data-slide="2">
+                            <div class="slide-content p-6">
+                                <h2 class="text-2xl font-bold text-blue-800 mb-4">What is Patient and Family-Centered Care?</h2>
+                                <p class="mb-4">Patient and Family-Centered Care is an approach to the planning, delivery, and evaluation of healthcare that is grounded in mutually beneficial partnerships among healthcare providers, patients, and families.</p>
+                                
+                                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-700 my-6">
+                                    <h4 class="font-semibold mb-2">Definition by the Institute for Patient and Family-Centered Care:</h4>
+                                    <blockquote class="italic">
+                                        "An approach to the planning, delivery, and evaluation of health care that is grounded in mutually beneficial partnerships among health care providers, patients, and families. It redefines the relationships in health care by placing an emphasis on collaborating with people of all ages, at all levels of care, and in all health care settings."
+                                    </blockquote>
+                                </div>
+                                
+                                <h4 class="font-semibold mb-2">Key Characteristics:</h4>
+                                <ul class="list-disc pl-5 space-y-1 mb-6">
+                                    <li>Recognizes the vital role that families play in ensuring the health and well-being of patients</li>
+                                    <li>Acknowledges that emotional, social, and developmental support are integral components of healthcare</li>
+                                    <li>Promotes the health and well-being of individuals and families</li>
+                                    <li>Restores dignity and control to patients and families</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 3 -->
+                        <div class="slide" data-slide="3">
+                            <div class="slide-content p-6">
+                                <h2 class="text-2xl font-bold text-blue-800 mb-4">Historical Development of PFCC</h2>
+                                
+                                <div class="flex flex-col md:flex-row gap-6 my-6">
+                                    <div class="flex-3">
+                                        <h4 class="font-semibold mb-2">Evolution of Patient Care Models</h4>
+                                        <ul class="list-disc pl-5 space-y-2">
+                                            <li><strong>1950s-1960s:</strong> Provider-centered, paternalistic model dominates healthcare</li>
+                                            <li><strong>1970s-1980s:</strong> Beginning recognition of patient rights and autonomy</li>
+                                            <li><strong>1990s:</strong> Emergence of patient-centered care concepts</li>
+                                            <li><strong>2000s:</strong> Institute of Medicine identifies patient-centered care as one of six aims for healthcare improvement</li>
+                                            <li><strong>2010s-Present:</strong> Growing adoption of PFCC principles in healthcare systems globally</li>
+                                        </ul>
+                                    </div>
+                                    <div class="flex-2">
+                                        <div class="h-64 bg-blue-50 rounded-lg flex items-center justify-center">
+                                            <p class="text-center px-4"><i class="fas fa-hourglass-half text-5xl text-blue-700 mb-4 block"></i>Timeline of PFCC Evolution</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <h4 class="font-semibold mt-4 mb-2">Key Influencing Factors:</h4>
+                                <ul class="list-disc pl-5 space-y-1 mb-6">
+                                    <li>Consumer advocacy movements</li>
+                                    <li>Growing emphasis on healthcare quality and safety</li>
+                                    <li>Research demonstrating benefits of family involvement</li>
+                                    <li>Shift toward value-based healthcare delivery</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation controls -->
+                    <div class="slide-navigation bg-gray-50 p-4 flex justify-between items-center border-t border-gray-200">
+                        <div class="slide-counter text-sm text-gray-600">
+                            Slide <span id="current-slide-lec1">1</span> of <span id="total-slides-lec1">3</span>
+                        </div>
+                        <div class="slide-dots">
+                            <span class="slide-dot active" onclick="goToSlide(1, 'lec1')"></span>
+                            <span class="slide-dot" onclick="goToSlide(2, 'lec1')"></span>
+                            <span class="slide-dot" onclick="goToSlide(3, 'lec1')"></span>
+                        </div>
+                        <div class="slide-buttons">
+                            <button class="px-3 py-1 border border-blue-700 text-blue-700 rounded text-sm font-medium hover:bg-blue-50 transition-colors" onclick="prevSlide('lec1')">Previous</button>
+                            <button class="px-3 py-1 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors ml-2" onclick="nextSlide('lec1')">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="lecture2" class="lecture-slides bg-white rounded-lg shadow-md">
+                <div class="slide-container">
+                    <div class="slides">
+                        <!-- Slide 1 -->
+                        <div class="slide active" data-slide="1">
+                            <div class="slide-content p-6">
+                                <h2 class="text-2xl font-bold text-blue-800 mb-4">Core Principles in Practice</h2>
+                                <div class="mb-6">
+                                    <p class="mb-4">This lecture explores how the four core principles of Patient and Family-Centered Care are implemented in various healthcare settings.</p>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                        <div>
+                                            <h4 class="font-semibold mb-2">Learning Objectives</h4>
+                                            <ul class="list-disc pl-5 space-y-1">
+                                                <li>Apply the four PFCC principles in clinical practice</li>
+                                                <li>Identify strategies for implementing PFCC in different settings</li>
+                                                <li>Examine specific tools for enhancing patient and family involvement</li>
+                                                <li>Analyze barriers to PFCC implementation and strategies to overcome them</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold mb-2">Key Topics</h4>
+                                            <ul class="list-disc pl-5 space-y-1">
+                                                <li>Practical applications of the four core principles</li>
+                                                <li>Setting-specific implementation strategies</li>
+                                                <li>Overcoming resistance to PFCC approaches</li>
+                                                <li>Tools and resources for PFCC implementation</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 2 -->
+                        <div class="slide" data-slide="2">
+                            <div class="slide-content p-6">
+                                <h2 class="text-2xl font-bold text-blue-800 mb-4">Implementing Dignity and Respect</h2>
+                                
+                                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-700 my-6">
+                                    <h4 class="font-semibold mb-2">Practical Strategies:</h4>
+                                    <ul class="list-disc pl-5 space-y-2">
+                                        <li>Conduct comprehensive assessments that include cultural, spiritual, and social factors</li>
+                                        <li>Ask patients how they prefer to be addressed</li>
+                                        <li>Involve patients in identifying priorities for their care</li>
+                                        <li>Honor cultural and religious practices that are important to patients and families</li>
+                                        <li>Create physical environments that respect privacy and family presence</li>
+                                    </ul>
+                                </div>
+                                
+                                <p class="mb-4">Implementing dignity and respect means listening to and honoring patient and family perspectives and choices. This requires conscious effort to incorporate their knowledge, values, beliefs, and cultural backgrounds into care planning and delivery.</p>
+                                
+                                <div class="bg-gray-50 p-4 rounded-lg my-4">
+                                    <h4 class="font-semibold mb-2">Example: Cultural Considerations</h4>
+                                    <p class="mb-2">When caring for a Muslim patient during Ramadan, the healthcare team adjusted medication schedules and meal delivery times to accommodate fasting requirements, demonstrating respect for religious practices while maintaining clinical standards.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 3 -->
+                        <div class="slide" data-slide="3">
+                            <div class="slide-content p-6">
+                                <h2 class="text-2xl font-bold text-blue-800 mb-4">Enhancing Information Sharing</h2>
+                                
+                                <p class="mb-4">Effective information sharing is fundamental to PFCC implementation. Patients and families need timely, complete, and accurate information to effectively participate in care and decision-making.</p>
+                                
+                                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-700 my-6">
+                                    <h4 class="font-semibold mb-2">Key Strategies:</h4>
+                                    <ul class="list-disc pl-5 space-y-2">
+                                        <li>Use plain language and avoid medical jargon</li>
+                                        <li>Provide information in the patient's preferred language</li>
+                                        <li>Use teach-back methods to confirm understanding</li>
+                                        <li>Share complete information including risks, benefits, and alternatives</li>
+                                        <li>Use multiple formats (verbal, written, visual) to support different learning styles</li>
+                                        <li>Facilitate access to medical records through patient portals</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-gray-50 p-4 rounded-lg my-4">
+                                    <h4 class="font-semibold mb-2">Example: Discharge Planning</h4>
+                                    <p class="mb-2">A hospital redesigned its discharge process to include video instructions, written materials at appropriate literacy levels, teach-back verification, and follow-up phone calls to ensure patients and families understood care instructions.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation controls -->
+                    <div class="slide-navigation bg-gray-50 p-4 flex justify-between items-center border-t border-gray-200">
+                        <div class="slide-counter text-sm text-gray-600">
+                            Slide <span id="current-slide-lec2">1</span> of <span id="total-slides-lec2">3</span>
+                        </div>
+                        <div class="slide-dots">
+                            <span class="slide-dot active" onclick="goToSlide(1, 'lec2')"></span>
+                            <span class="slide-dot" onclick="goToSlide(2, 'lec2')"></span>
+                            <span class="slide-dot" onclick="goToSlide(3, 'lec2')"></span>
+                        </div>
+                        <div class="slide-buttons">
+                            <button class="px-3 py-1 border border-blue-700 text-blue-700 rounded text-sm font-medium hover:bg-blue-50 transition-colors" onclick="prevSlide('lec2')">Previous</button>
+                            <button class="px-3 py-1 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors ml-2" onclick="nextSlide('lec2')">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="lecture3" class="lecture-slides bg-white rounded-lg shadow-md">
+                <div class="slide-container">
+                    <div class="slides">
+                        <!-- Slide 1 -->
+                        <div class="slide active" data-slide="1">
+                            <div class="slide-content p-6">
+                                <h2 class="text-2xl font-bold text-blue-800 mb-4">Communication Skills for PFCC</h2>
+                                <div class="slide-body">
+                                    <p>Effective communication is the foundation of successful Patient and Family-Centered Care implementation.</p>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+                                        <div>
+                                            <h4 class="font-semibold mb-2">Learning Objectives</h4>
+                                            <ul class="list-disc pl-5 space-y-1">
+                                                <li>Identify key elements of effective communication in PFCC</li>
+                                                <li>Apply strategies for sharing information with patients and families</li>
+                                                <li>Use techniques for active listening and empathetic response</li>
+                                                <li>Adapt communication approaches to diverse cultural contexts</li>
+                                                <li>Implement shared decision-making processes</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold mb-2">Module Overview</h4>
+                                            <ul class="list-disc pl-5 space-y-1">
+                                                <li>Core communication skills</li>
+                                                <li>Cultural considerations in communication</li>
+                                                <li>Tools for shared decision-making</li>
+                                                <li>Strategies for difficult conversations</li>
+                                                <li>Digital communication technologies</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 2 -->
+                        <div class="slide" data-slide="2">
+                            <div class="slide-content p-6">
+                                <h2 class="text-2xl font-bold text-blue-800 mb-4">Core Communication Skills in PFCC</h2>
+                                <div class="slide-body">
+                                    <p>Effective PFCC requires mastery of specific communication skills that build trust and partnership.</p>
+                                    <div class="bg-blue-50 p-4 rounded-lg my-6">
+                                        <h4 class="font-semibold mb-2">Essential Communication Skills</h4>
+                                        <ul class="list-disc pl-5 space-y-2">
+                                            <li><strong>Active Listening:</strong> Fully focusing on the speaker, demonstrating attention, and providing feedback</li>
+                                            <li><strong>Plain Language:</strong> Using jargon-free, clear communication appropriate to health literacy levels</li>
+                                            <li><strong>Teach-Back Method:</strong> Asking patients to explain information in their own words to verify understanding</li>
+                                            <li><strong>Empathetic Response:</strong> Acknowledging emotions and demonstrating understanding</li>
+                                            <li><strong>Non-verbal Communication:</strong> Being aware of body language, facial expressions, and physical positioning</li>
+                                        </ul>
+                                    </div>
+                                    <p>Research shows that healthcare providers typically interrupt patients within the first 11-18 seconds of their speaking. Active listening means allowing patients to fully express their concerns before responding.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 3 -->
+                        <div class="slide" data-slide="3">
+                            <div class="slide-content p-6">
+                                <h2 class="text-2xl font-bold text-blue-800 mb-4">Cultural Considerations in Communication</h2>
+                                <div class="slide-body">
+                                    <p>Cultural factors significantly influence healthcare communication and must be considered in PFCC implementation.</p>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+                                        <div class="bg-blue-50 p-4 rounded-lg">
+                                            <h4 class="font-semibold mb-2">Cultural Dimensions Affecting Communication</h4>
+                                            <ul class="list-disc pl-5 space-y-1">
+                                                <li><strong>Collectivism vs. Individualism:</strong> How decisions are made within family and community structures</li>
+                                                <li><strong>Power Distance:</strong> How authority and hierarchy influence provider-patient interactions</li>
+                                                <li><strong>Communication Style:</strong> Direct vs. indirect communication preferences</li>
+                                                <li><strong>Time Orientation:</strong> Different perspectives on punctuality, scheduling, and future planning</li>
+                                            </ul>
+                                        </div>
+                                        <div class="bg-blue-50 p-4 rounded-lg">
+                                            <h4 class="font-semibold mb-2">Effective Cross-Cultural Communication</h4>
+                                            <ul class="list-disc pl-5 space-y-1">
+                                                <li>Assess your own cultural biases and assumptions</li>
+                                                <li>Ask about communication preferences</li>
+                                                <li>Use professional interpreters when needed</li>
+                                                <li>Validate understanding across cultural differences</li>
+                                                <li>Adapt your approach based on cultural context</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <p>A culturally competent approach avoids stereotyping while recognizing the influence of culture on healthcare expectations and communication patterns.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation controls -->
+                    <div class="slide-navigation bg-gray-50 p-4 flex justify-between items-center border-t border-gray-200">
+                        <div class="slide-counter text-sm text-gray-600">
+                            Slide <span id="current-slide-lec3">1</span> of <span id="total-slides-lec3">3</span>
+                        </div>
+                        <div class="slide-dots">
+                            <span class="slide-dot active" onclick="goToSlide(1, 'lec3')"></span>
+                            <span class="slide-dot" onclick="goToSlide(2, 'lec3')"></span>
+                            <span class="slide-dot" onclick="goToSlide(3, 'lec3')"></span>
+                        </div>
+                        <div class="slide-buttons">
+                            <button class="px-3 py-1 border border-blue-700 text-blue-700 rounded text-sm font-medium hover:bg-blue-50 transition-colors" onclick="prevSlide('lec3')">Previous</button>
+                            <button class="px-3 py-1 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors ml-2" onclick="nextSlide('lec3')">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="lecture4" class="lecture-slides bg-white rounded-lg shadow-md">
+                <div class="slide-container">
+                    <div class="slides">
+                        <!-- Slide 1 -->
+                        <div class="slide active" data-slide="1">
+                            <div class="slide-content p-6">
+                                <h2 class="text-2xl font-bold text-blue-800 mb-4">Building Systems to Support PFCC</h2>
+                                <div class="slide-body">
+                                    <p class="mb-4">This lecture examines the organizational structures, policies, and processes needed to implement and sustain PFCC throughout healthcare systems.</p>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                        <div>
+                                            <h4 class="font-semibold mb-2">Learning Objectives</h4>
+                                            <ul class="list-disc pl-5 space-y-1">
+                                                <li>Identify key components of PFCC-supportive systems</li>
+                                                <li>Describe organizational structures that facilitate PFCC</li>
+                                                <li>Explain strategies for staff engagement in PFCC implementation</li>
+                                                <li>Design physical environments that support family presence</li>
+                                                <li>Develop policies that incorporate PFCC principles</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold mb-2">Key Topics</h4>
+                                            <ul class="list-disc pl-5 space-y-1">
+                                                <li>Organizational leadership for PFCC</li>
+                                                <li>Patient and Family Advisory Councils</li>
+                                                <li>Staff education and mentoring</li>
+                                                <li>Physical environment design</li>
+                                                <li>Policy development processes</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 2 -->
+                        <div class="slide" data-slide="2">
+                            <div class="slide-content p-6">
+                                <h2 class="text-2xl font-bold text-blue-800 mb-4">Organizational Leadership for PFCC</h2>
+                                <div class="slide-body">
+                                    <p class="mb-4">Leadership commitment and alignment is essential for successful PFCC implementation. Leaders at all levels must champion and model PFCC principles.</p>
+                                    
+                                    <div class="bg-blue-50 p-4 rounded-lg my-6">
+                                        <h4 class="font-semibold mb-2">Leadership Actions to Support PFCC:</h4>
+                                        <ul class="list-disc pl-5 space-y-2">
+                                            <li><strong>Strategic Prioritization:</strong> Explicitly include PFCC in mission, vision, and strategic plans</li>
+                                            <li><strong>Resource Allocation:</strong> Provide necessary funding, staffing, and time for PFCC initiatives</li>
+                                            <li><strong>Accountability Systems:</strong> Incorporate PFCC metrics into performance evaluation</li>
+                                            <li><strong>Role Modeling:</strong> Demonstrate PFCC behaviors in interactions with patients, families, and staff</li>
+                                            <li><strong>Recognition:</strong> Celebrate and reward exemplary PFCC practices</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <p class="mb-4">Effective leaders establish clear expectations for PFCC while creating the conditions that enable staff to meet those expectations.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 3 -->
+                        <div class="slide" data-slide="3">
+                            <div class="slide-content p-6">
+                                <h2 class="text-2xl font-bold text-blue-800 mb-4">Patient and Family Advisory Councils</h2>
+                                <div class="slide-body">
+                                    <p class="mb-4">Patient and Family Advisory Councils (PFACs) are structured mechanisms for incorporating patient and family perspectives into organizational planning, policies, and operations.</p>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+                                        <div class="bg-blue-50 p-4 rounded-lg">
+                                            <h4 class="font-semibold mb-2">Key Functions of PFACs:</h4>
+                                            <ul class="list-disc pl-5 space-y-1">
+                                                <li>Advise on facility design and renovation</li>
+                                                <li>Review and provide input on policies</li>
+                                                <li>Participate in quality improvement initiatives</li>
+                                                <li>Contribute to staff education and orientation</li>
+                                                <li>Review patient education materials</li>
+                                                <li>Serve as a channel for broader patient/family input</li>
+                                            </ul>
+                                        </div>
+                                        <div class="bg-blue-50 p-4 rounded-lg">
+                                            <h4 class="font-semibold mb-2">Establishing Effective PFACs:</h4>
+                                            <ul class="list-disc pl-5 space-y-1">
+                                                <li>Recruit diverse membership reflecting community served</li>
+                                                <li>Provide orientation and ongoing education</li>
+                                                <li>Establish clear charter and responsibilities</li>
+                                                <li>Ensure leadership support and participation</li>
+                                                <li>Create meaningful work with tangible outcomes</li>
+                                                <li>Regularly evaluate effectiveness and impact</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <p class="mb-4">PFACs should have real influence on organizational decisions rather than serving merely as token representation.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation controls -->
+                    <div class="slide-navigation bg-gray-50 p-4 flex justify-between items-center border-t border-gray-200">
+                        <div class="slide-counter text-sm text-gray-600">
+                            Slide <span id="current-slide-lec4">1</span> of <span id="total-slides-lec4">3</span>
+                        </div>
+                        <div class="slide-dots">
+                            <span class="slide-dot active" onclick="goToSlide(1, 'lec4')"></span>
+                            <span class="slide-dot" onclick="goToSlide(2, 'lec4')"></span>
+                            <span class="slide-dot" onclick="goToSlide(3, 'lec4')"></span>
+                        </div>
+                        <div class="slide-buttons">
+                            <button class="px-3 py-1 border border-blue-700 text-blue-700 rounded text-sm font-medium hover:bg-blue-50 transition-colors" onclick="prevSlide('lec4')">Previous</button>
+                            <button class="px-3 py-1 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors ml-2" onclick="nextSlide('lec4')">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="lecture5" class="lecture-slides bg-white rounded-lg shadow-md">
+                <div class="slide-container">
+                    <div class="slides">
+                        <!-- Slide 1 -->
+                        <div class="slide active" data-slide="1">
+                            <div class="slide-content p-6">
+                                <h2 class="text-2xl font-bold text-blue-800 mb-4">Measuring and Improving PFCC Outcomes</h2>
+                                <div class="slide-body">
+                                    <p class="mb-4">This lecture examines approaches to measuring PFCC implementation and outcomes, and using that data to drive continuous improvement.</p>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                        <div>
+                                            <h4 class="font-semibold mb-2">Learning Objectives</h4>
+                                            <ul class="list-disc pl-5 space-y-1">
+                                                <li>Identify key metrics for evaluating PFCC implementation</li>
+                                                <li>Apply quality improvement methodologies to PFCC initiatives</li>
+                                                <li>Analyze patient experience data to identify improvement opportunities</li>
+                                                <li>Engage patients and families in quality improvement</li>
+                                                <li>Develop a balanced measurement approach for PFCC</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold mb-2">Key Topics</h4>
+                                            <ul class="list-disc pl-5 space-y-1">
+                                                <li>PFCC measurement frameworks</li>
+                                                <li>Patient experience surveys</li>
+                                                <li>Process and outcome measures</li>
+                                                <li>Quality improvement methodologies</li>
+                                                <li>Patient-reported outcomes</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 2 -->
+                        <div class="slide" data-slide="2">
+                            <div class="slide-content p-6">
+                                <h2 class="text-2xl font-bold text-blue-800 mb-4">PFCC Measurement Frameworks</h2>
+                                <div class="slide-body">
+                                    <p class="mb-4">Comprehensive measurement of PFCC requires multiple types of metrics across different domains.</p>
+                                    
+                                    <div class="bg-blue-50 p-4 rounded-lg my-6">
+                                        <h4 class="font-semibold mb-2">Balanced Measurement Framework for PFCC:</h4>
+                                        <ul class="list-disc pl-5 space-y-2">
+                                            <li><strong>Structure Measures:</strong> Assess organizational capabilities for PFCC (e.g., policies, staffing, environment)</li>
+                                            <li><strong>Process Measures:</strong> Evaluate how PFCC is delivered (e.g., family presence rates, shared decision-making documentation)</li>
+                                            <li><strong>Outcome Measures:</strong> Assess results of PFCC implementation (e.g., patient satisfaction, clinical outcomes, readmissions)</li>
+                                            <li><strong>Balancing Measures:</strong> Monitor unintended consequences (e.g., staff workload, length of stay)</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <p class="mb-4">Effective measurement requires alignment between metrics and organizational priorities, with meaningful benchmarks and targets.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 3 -->
+                        <div class="slide" data-slide="3">
+                            <div class="slide-content p-6">
+                                <h2 class="text-2xl font-bold text-blue-800 mb-4">Patient Experience Measurement</h2>
+                                <div class="slide-body">
+                                    <p class="mb-4">Patient experience surveys are essential tools for evaluating PFCC from the perspective of patients and families.</p>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+                                        <div class="bg-blue-50 p-4 rounded-lg">
+                                            <h4 class="font-semibold mb-2">Common Patient Experience Measures:</h4>
+                                            <ul class="list-disc pl-5 space-y-1">
+                                                <li>HCAHPS (Hospital Consumer Assessment of Healthcare Providers and Systems)</li>
+                                                <li>CG-CAHPS (Clinician and Group CAHPS)</li>
+                                                <li>Press Ganey surveys</li>
+                                                <li>NRC Health surveys</li>
+                                                <li>Institution-specific measures</li>
+                                            </ul>
+                                        </div>
+                                        <div class="bg-blue-50 p-4 rounded-lg">
+                                            <h4 class="font-semibold mb-2">Effective Use of Experience Data:</h4>
+                                            <ul class="list-disc pl-5 space-y-1">
+                                                <li>Analyze trends over time</li>
+                                                <li>Identify variation across units/providers</li>
+                                                <li>Examine qualitative comments for themes</li>
+                                                <li>Create actionable improvement plans</li>
+                                                <li>Share results with patients/families</li>
+                                                <li>Close the feedback loop</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <p class="mb-4">Survey data should be supplemented with other feedback methods such as focus groups, interviews, and real-time feedback mechanisms.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation controls -->
+                    <div class="slide-navigation bg-gray-50 p-4 flex justify-between items-center border-t border-gray-200">
+                        <div class="slide-counter text-sm text-gray-600">
+                            Slide <span id="current-slide-lec5">1</span> of <span id="total-slides-lec5">3</span>
+                        </div>
+                        <div class="slide-dots">
+                            <span class="slide-dot active" onclick="goToSlide(1, 'lec5')"></span>
+                            <span class="slide-dot" onclick="goToSlide(2, 'lec5')"></span>
+                            <span class="slide-dot" onclick="goToSlide(3, 'lec5')"></span>
+                        </div>
+                        <div class="slide-buttons">
+                            <button class="px-3 py-1 border border-blue-700 text-blue-700 rounded text-sm font-medium hover:bg-blue-50 transition-colors" onclick="prevSlide('lec5')">Previous</button>
+                            <button class="px-3 py-1 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors ml-2" onclick="nextSlide('lec5')">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Case Studies Section -->
+        <section id="case-studies" class="mb-16" style="display:none;">
+            <h2 class="text-2xl font-bold text-blue-800 mb-4">Case Studies</h2>
+            <p class="mb-6">Explore real-world applications of Patient and Family-Centered Care through these detailed case studies from diverse healthcare settings.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-700">
+                        <h3 class="font-medium">Case Study 1</h3>
+                        <p class="text-sm text-gray-600">Bronson Methodist Hospital PFCC Implementation</p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm mb-4">How a hospital transformed its organizational culture to fully embrace PFCC principles.</p>
+                        <button class="inline-block px-4 py-2 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors" onclick="showCaseStudy(1)">View Case Study</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-700">
+                        <h3 class="font-medium">Case Study 2</h3>
+                        <p class="text-sm text-gray-600">Pediatric ICU Family Involvement Model</p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm mb-4">How a children's hospital integrated families into PICU care and decision-making.</p>
+                        <button class="inline-block px-4 py-2 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors" onclick="showCaseStudy(2)">View Case Study</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-700">
+                        <h3 class="font-medium">Case Study 3</h3>
+                        <p class="text-sm text-gray-600">NICU Design with Patient/Family Input</p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm mb-4">How a hospital redesigned their NICU with extensive input from families.</p>
+                        <button class="inline-block px-4 py-2 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors" onclick="showCaseStudy(3)">View Case Study</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-700">
+                        <h3 class="font-medium">Case Study 4</h3>
+                        <p class="text-sm text-gray-600">Emergency Department PFCC Implementation</p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm mb-4">How an ED implemented PFCC principles in a high-acuity, fast-paced environment.</p>
+                        <button class="inline-block px-4 py-2 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors" onclick="showCaseStudy(4)">View Case Study</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-700">
+                        <h3 class="font-medium">Case Study 5</h3>
+                        <p class="text-sm text-gray-600">Chronic Disease Management Partnerships</p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm mb-4">A regional diabetes management program implementing PFCC principles across diverse settings.</p>
+                        <button class="inline-block px-4 py-2 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors" onclick="showCaseStudy(5)">View Case Study</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Case Study Content Display Area -->
+            <div id="case-study1" class="case-study bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold text-blue-800 mb-4">Case Study 1: Bronson Methodist Hospital PFCC Implementation</h3>
+                <div class="bg-blue-50 p-4 rounded-lg mb-6 border-l-4 border-blue-700">
+                    <h4 class="font-semibold mb-2">Overview</h4>
+                    <p>Bronson Methodist Hospital in Kalamazoo, Michigan implemented a comprehensive PFCC approach that earned them recognition as a leader in patient-centered care. This case study examines their transformational journey and key strategies.</p>
+                </div>
+                
+                <h4 class="font-semibold text-lg mb-2">Background</h4>
+                <p class="mb-4">Bronson Methodist Hospital is a 434-bed tertiary care hospital serving southwest Michigan. In the early 2000s, the hospital leadership committed to transforming their organizational culture to fully embrace PFCC principles.</p>
+                
+                <h4 class="font-semibold text-lg mb-2">Key Initiatives</h4>
+                <ul class="list-disc pl-5 mb-6 space-y-2">
+                    <li><strong>Facility Redesign:</strong> The hospital underwent major renovations with patient and family input, creating all-private rooms designed for family presence.</li>
+                    <li><strong>Patient-Family Advisory Councils:</strong> The hospital established multiple councils that regularly provide input on policies, programs, and facility design.</li>
+                    <li><strong>Open Visitation Policies:</strong> Eliminated restrictive visiting hours, allowing families to be present according to patient preferences.</li>
+                    <li><strong>Staff Education:</strong> All staff, from executives to frontline employees, received training on PFCC principles and practices.</li>
+                </ul>
+                
+                <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                    <h4 class="font-semibold mb-4">Implementation Strategy</h4>
+                    <p class="mb-2">Bronson's approach to PFCC implementation was characterized by:</p>
+                    <ol class="list-decimal pl-5 space-y-2">
+                        <li>Strong executive leadership commitment with designated champions</li>
+                        <li>Clear articulation of PFCC as a core organizational value</li>
+                        <li>Systematic staff education with concrete behavioral expectations</li>
+                        <li>Structured mechanisms for patient and family input</li>
+                        <li>Integration of PFCC principles into operational policies</li>
+                        <li>Consistent measurement and feedback loops</li>
+                    </ol>
+                </div>
+                
+                <h4 class="font-semibold text-lg mb-2">Outcomes</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h5 class="font-semibold mb-2">Patient Experience</h5>
+                        <ul class="list-disc pl-5">
+                            <li>Top 1% nationally in patient satisfaction</li>
+                            <li>97% would recommend to friends and family</li>
+                            <li>Significant improvement in communication scores</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h5 class="font-semibold mb-2">Clinical Outcomes</h5>
+                        <ul class="list-disc pl-5">
+                            <li>Decreased infection rates</li>
+                            <li>Reduced medication errors</li>
+                            <li>Improved pain management scores</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h5 class="font-semibold mb-2">Organizational Impact</h5>
+                        <ul class="list-disc pl-5">
+                            <li>Increased staff satisfaction and retention</li>
+                            <li>National recognition and awards</li>
+                            <li>Increased market share in service area</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h4 class="font-semibold text-lg mb-2">Discussion Questions</h4>
+                <ol class="list-decimal pl-5 mb-6 space-y-2">
+                    <li>What key factors contributed to Bronson Methodist Hospital's successful implementation of PFCC?</li>
+                    <li>How did the physical environment redesign support PFCC principles?</li>
+                    <li>What resistance might have emerged during implementation, and how could it have been addressed?</li>
+                    <li>How could similar strategies be adapted for healthcare settings in Southeast Asia?</li>
+                    <li>What cultural considerations would be important when implementing Bronson's approach in different countries?</li>
+                </ol>
+                
+                <div class="mt-6 flex flex-wrap gap-3">
+                    <button class="px-4 py-2 bg-blue-700 text-white rounded font-medium hover:bg-blue-800 transition-colors" onclick="takeCaseStudyQuiz(1); return false;">Take Quiz</button>
+                    <button class="px-4 py-2 border border-blue-700 text-blue-700 rounded font-medium hover:bg-blue-50 transition-colors" onclick="showModal('bronson-resources'); return false;">Access Resources</button>
+                </div>
+            </div>
+            
+            <div id="case-study2" class="case-study bg-white rounded-lg shadow-md p-6" style="display:none;">
+                <h3 class="text-xl font-bold text-blue-800 mb-4">Case Study 2: Pediatric ICU Family Involvement Model</h3>
+                <div class="bg-blue-50 p-4 rounded-lg mb-6 border-l-4 border-blue-700">
+                    <h4 class="font-semibold mb-2">Overview</h4>
+                    <p>This case study examines how Children's National Medical Center in Washington, DC transformed their Pediatric Intensive Care Unit (PICU) practices to fully integrate families as active participants in care and decision-making.</p>
+                </div>
+                
+                <h4 class="font-semibold text-lg mb-2">Background</h4>
+                <p class="mb-4">Children's National PICU is a 44-bed unit serving critically ill children from the Washington metropolitan area and beyond. Prior to their PFCC initiative, the unit had restrictive visiting policies and limited family involvement in care processes.</p>
+                
+                <h4 class="font-semibold text-lg mb-2">PFCC Transformation</h4>
+                <div class="mb-6">
+                    <h5 class="font-semibold mb-2">Key Elements of the PICU Family Involvement Model:</h5>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Family Presence Policy:</strong> Eliminated traditional "visiting hours" in favor of 24/7 family access, with accommodations for overnight stays</li>
+                        <li><strong>Family-Centered Rounds:</strong> Structured daily rounds to include families as active participants, not just observers</li>
+                        <li><strong>Parent Education Program:</strong> Comprehensive education to prepare parents for participation in care activities</li>
+                        <li><strong>Parent Support Network:</strong> System connecting experienced PICU families with newly admitted families</li>
+                        <li><strong>Family Participation Menu:</strong> Tool allowing families to indicate their desired level of involvement in specific care activities</li>
+                        <li><strong>Family-Staff Communication Boards:</strong> Bedside tools to enhance information sharing and goal alignment</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                    <h4 class="font-semibold mb-4">Implementation Process</h4>
+                    <p class="mb-2">The PICU transformation followed a structured change management approach:</p>
+                    <ol class="list-decimal pl-5 space-y-2">
+                        <li><strong>Assessment:</strong> Conducted surveys and focus groups with families and staff to identify gaps in family-centered care</li>
+                        <li><strong>Planning:</strong> Formed a multidisciplinary team including parents to design the new model</li>
+                        <li><strong>Education:</strong> Provided comprehensive training for all PICU staff on new processes and family engagement skills</li>
+                        <li><strong>Implementation:</strong> Phased rollout of individual components with continuous refinement</li>
+                        <li><strong>Evaluation:</strong> Systematic measurement of impact on families, patients, staff, and clinical outcomes</li>
+                    </ol>
+                </div>
+                
+                <h4 class="font-semibold text-lg mb-2">Overcoming Challenges</h4>
+                <p class="mb-2">The implementation team encountered several challenges:</p>
+                <ul class="list-disc pl-5 mb-4 space-y-1">
+                    <li><strong>Staff Concerns:</strong> Some staff initially worried about increased workload, interference with care, and privacy issues</li>
+                    <li><strong>Space Constraints:</strong> The physical environment needed modifications to accommodate family presence</li>
+                    <li><strong>Cultural Barriers:</strong> Diverse family backgrounds required adaptations to the standard approach</li>
+                    <li><strong>Workflow Disruption:</strong> Existing clinical workflows needed redesign to incorporate family participation</li>
+                </ul>
+                
+                <p class="mb-2">These challenges were addressed through:</p>
+                <ul class="list-disc pl-5 mb-6 space-y-1">
+                    <li>Staff champions from each discipline who modeled and promoted new practices</li>
+                    <li>Creative space utilization and minor renovations</li>
+                    <li>Cultural competence training and multilingual resources</li>
+                    <li>Gradual workflow adjustments with staff input</li>
+                </ul>
+                
+                <h4 class="font-semibold text-lg mb-2">Outcomes</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h5 class="font-semibold mb-2">Family Outcomes</h5>
+                        <ul class="list-disc pl-5">
+                            <li>Increased family satisfaction (92% very satisfied)</li>
+                            <li>Decreased family anxiety and stress</li>
+                            <li>Improved family preparedness for home care</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h5 class="font-semibold mb-2">Clinical Outcomes</h5>
+                        <ul class="list-disc pl-5">
+                            <li>25% reduction in medication errors</li>
+                            <li>Improved pain management</li>
+                            <li>Decreased length of stay by 0.8 days</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h5 class="font-semibold mb-2">Staff Outcomes</h5>
+                        <ul class="list-disc pl-5">
+                            <li>Increased job satisfaction after initial adjustment period</li>
+                            <li>Improved collaboration with families</li>
+                            <li>Enhanced cultural competence</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h4 class="font-semibold text-lg mb-2">Discussion Questions</h4>
+                <ol class="list-decimal pl-5 mb-6 space-y-2">
+                    <li>How might the family participation menu concept be adapted for different cultural contexts in Southeast Asia?</li>
+                    <li>What specific strategies could address staff resistance to family presence in critical care settings?</li>
+                    <li>How would you modify the family education program for families with limited health literacy?</li>
+                    <li>What technological tools could enhance family participation in settings with limited resources?</li>
+                    <li>How might family-centered rounds be structured differently in collectivist cultures?</li>
+                </ol>
+                
+                <div class="mt-6 flex flex-wrap gap-3">
+                    <button class="px-4 py-2 bg-blue-700 text-white rounded font-medium hover:bg-blue-800 transition-colors" onclick="takeCaseStudyQuiz(2); return false;">Take Quiz</button>
+                    <button class="px-4 py-2 border border-blue-700 text-blue-700 rounded font-medium hover:bg-blue-50 transition-colors" onclick="showModal('picu-resources'); return false;">Access Resources</button>
+                </div>
+            </div>
+            
+            <div id="case-study3" class="case-study bg-white rounded-lg shadow-md p-6" style="display:none;">
+                <h3 class="text-xl font-bold text-blue-800 mb-4">Case Study 3: NICU Design with Patient/Family Input</h3>
+                <div class="bg-blue-50 p-4 rounded-lg mb-6 border-l-4 border-blue-700">
+                    <h4 class="font-semibold mb-2">Overview</h4>
+                    <p>This case study examines how Ampang Hospital in Malaysia redesigned their Neonatal Intensive Care Unit (NICU) with extensive input from families, resulting in a space that better supports infant development, family involvement, and staff efficiency.</p>
+                </div>
+                
+                <h4 class="font-semibold text-lg mb-2">Background</h4>
+                <p class="mb-4">The original NICU at Ampang Hospital was an open-bay design with 30 beds in a shared space, limited privacy, high noise levels, and minimal accommodations for parents. When planning a renovation, leadership committed to incorporating PFCC principles into the design process.</p>
+                
+                <h4 class="font-semibold text-lg mb-2">Family-Centered Design Process</h4>
+                <div class="mb-6">
+                    <h5 class="font-semibold mb-2">Key Elements of the Design Process:</h5>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Design Committee:</strong> Formation of a committee including architects, clinical staff, and former NICU parents</li>
+                        <li><strong>Family Experience Mapping:</strong> Documentation of the family journey through the NICU to identify pain points and opportunities</li>
+                        <li><strong>Family Focus Groups:</strong> Multiple sessions with diverse families to gather input on design priorities</li>
+                        <li><strong>Staff-Family Design Workshops:</strong> Collaborative sessions to develop and refine design concepts</li>
+                        <li><strong>Prototype Testing:</strong> Mock-ups of key spaces that families and staff could experience and evaluate</li>
+                        <li><strong>Post-Occupancy Evaluation:</strong> Structured assessment after implementation to identify further improvements</li>
+                    </ul>
+                </div>
+                
+                <h4 class="font-semibold text-lg mb-2">Design Features Based on Family Input</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-teal-50 p-4 rounded-lg">
+                        <h5 class="flex items-center font-semibold mb-2">
+                            <i class="fas fa-bed text-teal-600 mr-2"></i>Private/Semi-Private Rooms
+                        </h5>
+                        <p class="text-sm">Single or double patient rooms with space for parents to stay overnight, providing privacy, noise control, and individualized environments</p>
+                    </div>
+                    <div class="bg-teal-50 p-4 rounded-lg">
+                        <h5 class="flex items-center font-semibold mb-2">
+                            <i class="fas fa-home text-teal-600 mr-2"></i>Family Lounge Areas
+                        </h5>
+                        <p class="text-sm">Comfortable spaces where parents can rest, prepare meals, connect with other families, and access educational resources</p>
+                    </div>
+                    <div class="bg-teal-50 p-4 rounded-lg">
+                        <h5 class="flex items-center font-semibold mb-2">
+                            <i class="fas fa-baby text-teal-600 mr-2"></i>Kangaroo Care Spaces
+                        </h5>
+                        <p class="text-sm">Dedicated areas with comfortable chairs and privacy screens for skin-to-skin holding, with appropriate equipment nearby</p>
+                    </div>
+                    <div class="bg-teal-50 p-4 rounded-lg">
+                        <h5 class="flex items-center font-semibold mb-2">
+                            <i class="fas fa-pray text-teal-600 mr-2"></i>Cultural Considerations
+                        </h5>
+                        <p class="text-sm">Design elements respecting Malaysia's diverse religious and cultural practices, including prayer rooms and culturally appropriate décor</p>
+                    </div>
+                    <div class="bg-teal-50 p-4 rounded-lg">
+                        <h5 class="flex items-center font-semibold mb-2">
+                            <i class="fas fa-phone-alt text-teal-600 mr-2"></i>Communication Technology
+                        </h5>
+                        <p class="text-sm">Video conferencing systems allowing families unable to be present to see their baby and speak with the care team</p>
+                    </div>
+                    <div class="bg-teal-50 p-4 rounded-lg">
+                        <h5 class="flex items-center font-semibold mb-2">
+                            <i class="fas fa-graduation-cap text-teal-600 mr-2"></i>Parent Education Center
+                        </h5>
+                        <p class="text-sm">Space dedicated to parent training and education, with multimedia resources in multiple languages</p>
+                    </div>
+                </div>
+                
+                <h4 class="font-semibold text-lg mb-2">Implementation Challenges</h4>
+                <ul class="list-disc pl-5 mb-6 space-y-1">
+                    <li><strong>Budget Constraints:</strong> Balancing ideal design elements with financial limitations</li>
+                    <li><strong>Space Limitations:</strong> Working within the existing building footprint</li>
+                    <li><strong>Staffing Model Adjustments:</strong> Adapting nursing workflow from open bay to private room design</li>
+                    <li><strong>Technology Integration:</strong> Ensuring new monitoring systems functioned reliably in the redesigned space</li>
+                    <li><strong>Cultural Sensitivity:</strong> Accommodating diverse cultural and religious practices in the design</li>
+                </ul>
+                
+                <h4 class="font-semibold text-lg mb-2">Outcomes</h4>
+                <div class="mb-6">
+                    <h5 class="font-semibold mb-2">Quantitative Outcomes:</h5>
+                    <ul class="list-disc pl-5 space-y-1 mb-4">
+                        <li>30% increase in parental presence at the bedside</li>
+                        <li>40% increase in kangaroo care hours</li>
+                        <li>25% reduction in nosocomial infection rates</li>
+                        <li>20% reduction in average length of stay</li>
+                        <li>18% improvement in staff satisfaction scores</li>
+                        <li>Significant reduction in ambient noise levels (65dB to 45dB)</li>
+                    </ul>
+                    
+                    <h5 class="font-semibold mb-2">Qualitative Outcomes:</h5>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Parents reported feeling more respected, comfortable, and involved in care</li>
+                        <li>Staff noted improved communication with families and higher family engagement</li>
+                        <li>Families from diverse backgrounds reported feeling their cultural needs were respected</li>
+                        <li>Improved transition to home reported by families</li>
+                    </ul>
+                </div>
+                
+                <h4 class="font-semibold text-lg mb-2">Discussion Questions</h4>
+                <ol class="list-decimal pl-5 mb-6 space-y-2">
+                    <li>How might this family-centered design process be adapted for redesigning other hospital spaces?</li>
+                    <li>What specific design elements address the needs of culturally diverse families in Malaysia?</li>
+                    <li>How could similar design approaches be implemented with very limited resources?</li>
+                    <li>What technology solutions could further enhance family involvement in the NICU?</li>
+                    <li>How does the physical environment impact the implementation of PFCC principles?</li>
+                </ol>
+                
+                <div class="mt-6 flex flex-wrap gap-3">
+                    <button class="px-4 py-2 bg-blue-700 text-white rounded font-medium hover:bg-blue-800 transition-colors" onclick="takeCaseStudyQuiz(3); return false;">Take Quiz</button>
+                </div>
+            </div>
+            
+            <div id="case-study4" class="case-study bg-white rounded-lg shadow-md p-6" style="display:none;">
+                <h3 class="text-xl font-bold text-blue-800 mb-4">Case Study 4: Emergency Department PFCC Implementation</h3>
+                <div class="bg-blue-50 p-4 rounded-lg mb-6 border-l-4 border-blue-700">
+                    <h4 class="font-semibold mb-2">Overview</h4>
+                    <p>This case study examines how Singapore General Hospital transformed their Emergency Department practices to implement PFCC principles in a high-acuity, fast-paced environment with diverse patient populations.</p>
+                </div>
+                
+                <h4 class="font-semibold text-lg mb-2">Background</h4>
+                <p class="mb-4">Singapore General Hospital's Emergency Department sees over 125,000 patients annually from diverse ethnic, linguistic, and cultural backgrounds. Traditional ED practices often limited family presence and involvement due to space constraints, efficiency concerns, and clinical priorities.</p>
+                
+                <h4 class="font-semibold text-lg mb-2">Key PFCC Initiatives Implemented</h4>
+                <ul class="list-disc pl-5 mb-6 space-y-2">
+                    <li><strong>Family Presence During Resuscitation:</strong> Protocol allowing family members to be present during resuscitation efforts</li>
+                    <li><strong>Patient Navigation Program:</strong> Specially trained staff to guide patients and families through the ED process</li>
+                    <li><strong>Digital Information Boards:</strong> Real-time updates on wait times and process status</li>
+                    <li><strong>Multilingual Communication Tools:</strong> Resources to enhance communication with Singapore's diverse population</li>
+                    <li><strong>Cultural Competence Training:</strong> Staff education on cultural practices affecting emergency care</li>
+                </ul>
+                
+                <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                    <h4 class="font-semibold mb-4">Implementation Strategy</h4>
+                    <p class="mb-2">The ED implementation focused on addressing common barriers to PFCC in emergency settings:</p>
+                    <ol class="list-decimal pl-5 space-y-2">
+                        <li><strong>Space Redesign:</strong> Reconfigured treatment areas to accommodate family presence where possible</li>
+                        <li><strong>Staff Education:</strong> Targeted training addressing concerns about family interference with care</li>
+                        <li><strong>Process Modification:</strong> Adjusted workflows to incorporate family input without compromising efficiency</li>
+                        <li><strong>Technology Integration:</strong> Used digital solutions to enhance communication and transparency</li>
+                        <li><strong>Cultural Adaptation:</strong> Tailored approaches for Singapore's multicultural context</li>
+                    </ol>
+                </div>
+                
+                <h4 class="font-semibold text-lg mb-2">Overcoming Challenges</h4>
+                <p class="mb-2">The implementation team encountered several challenges specific to the ED environment:</p>
+                <ul class="list-disc pl-5 mb-6 space-y-1">
+                    <li><strong>Space Constraints:</strong> Limited physical space in a busy urban ED</li>
+                    <li><strong>Staff Concerns:</strong> Worries about efficiency impacts and clinical disruption</li>
+                    <li><strong>Patient Volume:</strong> High-volume, fast-paced environment requiring streamlined processes</li>
+                    <li><strong>Clinical Acuity:</strong> Balancing family involvement with urgent clinical priorities</li>
+                    <li><strong>Linguistic Diversity:</strong> Meeting communication needs across multiple languages</li>
+                </ul>
+                
+                <h4 class="font-semibold text-lg mb-2">Outcomes</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h5 class="font-semibold mb-2">Patient/Family Outcomes</h5>
+                        <ul class="list-disc pl-5">
+                            <li>12% improvement in patient satisfaction scores</li>
+                            <li>30% reduction in communication-related complaints</li>
+                            <li>Positive feedback regarding family presence policies</li>
+                            <li>Improved understanding of discharge instructions</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h5 class="font-semibold mb-2">Operational Outcomes</h5>
+                        <ul class="list-disc pl-5">
+                            <li>No increase in average treatment times</li>
+                            <li>Improved transition of care for admitted patients</li>
+                            <li>Reduced return visits within 72 hours</li>
+                            <li>Enhanced staff cultural competence</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h4 class="font-semibold text-lg mb-2">Discussion Questions</h4>
+                <ol class="list-decimal pl-5 mb-6 space-y-2">
+                    <li>How can emergency departments balance efficiency demands with PFCC principles?</li>
+                    <li>What strategies could be used to overcome staff resistance to family presence during resuscitation?</li>
+                    <li>How might digital tools enhance PFCC in emergency settings?</li>
+                    <li>What cultural considerations are most important in emergency care in Southeast Asian contexts?</li>
+                    <li>How could this model be implemented in settings with more limited resources?</li>
+                </ol>
+                
+                <div class="mt-6 flex flex-wrap gap-3">
+                    <button class="px-4 py-2 bg-blue-700 text-white rounded font-medium hover:bg-blue-800 transition-colors" onclick="takeCaseStudyQuiz(4); return false;">Take Quiz</button>
+                </div>
+            </div>
+            
+            <div id="case-study5" class="case-study bg-white rounded-lg shadow-md p-6" style="display:none;">
+                <h3 class="text-xl font-bold text-blue-800 mb-4">Case Study 5: Chronic Disease Management Partnerships in Southeast Asia</h3>
+                <div class="bg-blue-50 p-4 rounded-lg mb-6 border-l-4 border-blue-700">
+                    <h4 class="font-semibold mb-2">Overview</h4>
+                    <p>This case study examines a regional diabetes management program implemented across multiple countries in Southeast Asia, highlighting how PFCC principles were adapted to diverse healthcare systems, cultural contexts, and resource settings.</p>
+                </div>
+                
+                <h4 class="font-semibold text-lg mb-2">Background</h4>
+                <p class="mb-4">The Southeast Asian Diabetes Partnership Program was launched in 2015 across Thailand, Malaysia, Vietnam, and the Philippines to address the growing diabetes epidemic in the region. The program sought to implement PFCC principles while respecting the unique cultural, economic, and healthcare system contexts of each country.</p>
+                
+                <h4 class="font-semibold text-lg mb-2">Key PFCC Elements</h4>
+                <ul class="list-disc pl-5 mb-6 space-y-2">
+                    <li><strong>Culturally Adapted Self-Management Support:</strong> Education materials and approaches tailored to local food practices, family structures, and health beliefs</li>
+                    <li><strong>Community Health Worker Partnerships:</strong> Engagement of local community members as diabetes educators and support resources</li>
+                    <li><strong>Family Care Teams:</strong> Structured approach to involving family members in care planning and daily management</li>
+                    <li><strong>Digital Connection Platform:</strong> Mobile health application connecting patients, families, and healthcare teams with features adapted to local contexts</li>
+                    <li><strong>Faith-Based Partnerships:</strong> Collaboration with religious organizations to support behavior change aligned with cultural and spiritual practices</li>
+                </ul>
+                
+                <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                    <h4 class="font-semibold mb-4">Cultural Adaptations by Country</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <h5 class="font-semibold">Thailand</h5>
+                            <p>Integrated Buddhist principles of mindfulness into self-management education; worked with monks to promote healthy eating practices; leveraged family hierarchy by engaging elders as program champions.</p>
+                        </div>
+                        <div>
+                            <h5 class="font-semibold">Malaysia</h5>
+                            <p>Created separate but coordinated programs for different ethnic groups (Malay, Chinese, Indian); developed halal-certified meal planning guides; engaged religious leaders to address fasting during Ramadan.</p>
+                        </div>
+                        <div>
+                            <h5 class="font-semibold">Vietnam</h5>
+                            <p>Emphasized family-based care models; trained "family health leaders" to coordinate care within households; integrated traditional medicine practitioners into care teams.</p>
+                        </div>
+                        <div>
+                            <h5 class="font-semibold">Philippines</h5>
+                            <p>Built on strong community networks through barangay (village) health workers; developed church-based support groups; created family-centered education materials that emphasized caring for family providers.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h4 class="font-semibold text-lg mb-2">Implementation Challenges</h4>
+                <ul class="list-disc pl-5 mb-6 space-y-1">
+                    <li><strong>Health Literacy:</strong> Varied levels of health literacy requiring multiple educational approaches</li>
+                    <li><strong>Resource Constraints:</strong> Limited healthcare resources, particularly in rural areas</li>
+                    <li><strong>Traditional Beliefs:</strong> Integration of traditional medicine practices and beliefs</li>
+                    <li><strong>Health System Fragmentation:</strong> Varied healthcare delivery and financing systems</li>
+                    <li><strong>Digital Divide:</strong> Uneven access to technology across and within countries</li>
+                </ul>
+                
+                <h4 class="font-semibold text-lg mb-2">Outcomes</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h5 class="font-semibold mb-2">Clinical Outcomes</h5>
+                        <ul class="list-disc pl-5">
+                            <li>Average HbA1c reduction of 1.2% across all sites</li>
+                            <li>15% reduction in diabetes-related hospitalizations</li>
+                            <li>Improved medication adherence (68% to 84%)</li>
+                            <li>Increased regular blood glucose monitoring</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h5 class="font-semibold mb-2">Program Outcomes</h5>
+                        <ul class="list-disc pl-5">
+                            <li>High program retention rates (>80% across sites)</li>
+                            <li>Strong community engagement and ownership</li>
+                            <li>Cost-effective implementation in varied settings</li>
+                            <li>Successful scaling in multiple cultural contexts</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h4 class="font-semibold text-lg mb-2">Discussion Questions</h4>
+                <ol class="list-decimal pl-5 mb-6 space-y-2">
+                    <li>How does the role of family in chronic disease management vary across Southeast Asian cultures?</li>
+                    <li>What strategies were most effective in adapting PFCC principles to different cultural contexts?</li>
+                    <li>How could digital health tools be better leveraged to support PFCC in resource-constrained settings?</li>
+                    <li>What lessons from this program could be applied to other chronic disease management efforts?</li>
+                    <li>How did religious and spiritual factors influence PFCC implementation, and how were they effectively integrated?</li>
+                </ol>
+                
+                <div class="mt-6 flex flex-wrap gap-3">
+                    <button class="px-4 py-2 bg-blue-700 text-white rounded font-medium hover:bg-blue-800 transition-colors" onclick="takeCaseStudyQuiz(5); return false;">Take Quiz</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Quizzes Section -->
+        <section id="quizzes" class="mb-16" style="display:none;">
+            <h2 class="text-2xl font-bold text-blue-800 mb-4">Knowledge Assessment Quizzes</h2>
+            <p class="mb-6">Test your understanding of PFCC concepts through these interactive quizzes.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-700">
+                        <h3 class="font-medium">Quiz 1</h3>
+                        <p class="text-sm text-gray-600">Foundations of PFCC</p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm mb-4">10 questions testing your knowledge of PFCC concepts and principles.</p>
+                        <button class="inline-block px-4 py-2 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors" onclick="loadQuiz(1)">Start Quiz</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-700">
+                        <h3 class="font-medium">Quiz 2</h3>
+                        <p class="text-sm text-gray-600">Core Principles in Practice</p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm mb-4">Test your understanding of how PFCC principles apply in practice.</p>
+                        <button class="inline-block px-4 py-2 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors" onclick="loadQuiz(2)">Start Quiz</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-700">
+                        <h3 class="font-medium">Quiz 3</h3>
+                        <p class="text-sm text-gray-600">Communication Skills for PFCC</p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm mb-4">Evaluate your knowledge of effective communication in PFCC.</p>
+                        <button class="inline-block px-4 py-2 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors" onclick="loadQuiz(3)">Start Quiz</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-700">
+                        <h3 class="font-medium">Quiz 4</h3>
+                        <p class="text-sm text-gray-600">Building Systems to Support PFCC</p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm mb-4">Test your knowledge of organizational approaches to PFCC implementation.</p>
+                        <button class="inline-block px-4 py-2 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors" onclick="loadQuiz(4)">Start Quiz</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-700">
+                        <h3 class="font-medium">Quiz 5</h3>
+                        <p class="text-sm text-gray-600">Measuring and Improving PFCC Outcomes</p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm mb-4">Evaluate your knowledge of PFCC measurement and improvement strategies.</p>
+                        <button class="inline-block px-4 py-2 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors" onclick="loadQuiz(5)">Start Quiz</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-700">
+                        <h3 class="font-medium">Quiz 6</h3>
+                        <p class="text-sm text-gray-600">Cultural Aspects of PFCC</p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-sm mb-4">Test your understanding of cultural considerations in PFCC implementation.</p>
+                        <button class="inline-block px-4 py-2 bg-blue-700 text-white rounded text-sm font-medium hover:bg-blue-800 transition-colors" onclick="loadQuiz(6)">Start Quiz</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quiz Container -->
+            <div id="quiz-container" class="quiz-container bg-white rounded-lg shadow-md p-6" style="display:none;">
+                <h3 id="quiz-title" class="text-xl font-bold text-blue-800 mb-4">Quiz Title</h3>
+                
+                <div id="quiz-question" class="mb-6"></div>
+                
+                <ul id="quiz-options" class="mb-6"></ul>
+                
+                <div id="quiz-feedback" class="quiz-feedback"></div>
+                
+                <div class="flex justify-between mt-6">
+                    <button id="quiz-submit" class="px-4 py-2 bg-blue-700 text-white rounded font-medium hover:bg-blue-800 transition-colors">Submit Answer</button>
+                    <button id="quiz-next" class="px-4 py-2 bg-blue-700 text-white rounded font-medium hover:bg-blue-800 transition-colors" style="display:none;">Next Question</button>
+                </div>
+                
+                <div id="quiz-score-container" class="text-center my-8 p-6 bg-blue-50 rounded-lg hidden">
+                    <h4 class="text-lg font-semibold mb-2">Quiz Complete!</h4>
+                    <div class="w-24 h-24 bg-blue-700 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-4" id="quiz-badge">0%</div>
+                    <p class="mb-4">You scored <span id="quiz-score">0</span> out of <span id="quiz-total">0</span> questions correctly.</p>
+                    <button class="px-4 py-2 bg-blue-700 text-white rounded font-medium hover:bg-blue-800 transition-colors" onclick="showSection('quizzes')">Return to Quizzes</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Resources Section -->
+        <section id="resources" class="mb-16" style="display:none;">
+            <h2 class="text-2xl font-bold text-blue-800 mb-4">Resources</h2>
+            <p class="mb-6">Access additional materials to deepen your understanding of Patient and Family-Centered Care.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-36 bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-file-pdf text-5xl text-blue-700"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-1">PFCC Implementation Guide</h3>
+                        <p class="text-sm text-gray-600 mb-2"><i class="fas fa-file-pdf text-blue-700 mr-1"></i> PDF Guide</p>
+                        <p class="text-sm mb-4">Comprehensive guide to implementing PFCC in various healthcare settings.</p>
+                        <div class="flex justify-between items-center">
+                            <button class="px-3 py-1 border border-blue-700 text-blue-700 text-sm rounded font-medium hover:bg-blue-50 transition-colors resource-download">Download</button>
+                            <span><i class="fas fa-download"></i> 487</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-36 bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-folder text-5xl text-blue-700"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-1">PFAC Toolkit</h3>
+                        <p class="text-sm text-gray-600 mb-2"><i class="fas fa-file-archive text-blue-700 mr-1"></i> Multiple Files</p>
+                        <p class="text-sm mb-4">Tools and templates for establishing effective Patient and Family Advisory Councils.</p>
+                        <div class="flex justify-between items-center">
+                            <button class="px-3 py-1 border border-blue-700 text-blue-700 text-sm rounded font-medium hover:bg-blue-50 transition-colors resource-download">Download</button>
+                            <span><i class="fas fa-download"></i> 312</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-36 bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-file-excel text-5xl text-blue-700"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-1">PFCC Assessment Tool</h3>
+                        <p class="text-sm text-gray-600 mb-2"><i class="fas fa-file-excel text-blue-700 mr-1"></i> Excel Tool</p>
+                        <p class="text-sm mb-4">Self-assessment tool for evaluating PFCC implementation in your organization.</p>
+                        <div class="flex justify-between items-center">
+                            <button class="px-3 py-1 border border-blue-700 text-blue-700 text-sm rounded font-medium hover:bg-blue-50 transition-colors resource-download">Download</button>
+                            <span><i class="fas fa-download"></i> 256</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-36 bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-video text-5xl text-blue-700"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-1">Family-Centered Rounds: Training Video</h3>
+                        <p class="text-sm text-gray-600 mb-2"><i class="fas fa-film text-blue-700 mr-1"></i> Video</p>
+                        <p class="text-sm mb-4">Educational video demonstrating effective family-centered rounds in various settings.</p>
+                        <div class="flex justify-between items-center">
+                            <button class="px-3 py-1 border border-blue-700 text-blue-700 text-sm rounded font-medium hover:bg-blue-50 transition-colors resource-download">Watch</button>
+                            <span><i class="fas fa-eye"></i> 263</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-36 bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-tasks text-5xl text-blue-700"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-1">PFCC Implementation Toolkit</h3>
+                        <p class="text-sm text-gray-600 mb-2"><i class="fas fa-file-archive text-blue-700 mr-1"></i> Multiple Files</p>
+                        <p class="text-sm mb-4">Comprehensive toolkit for implementing family-centered care in any setting.</p>
+                        <div class="flex justify-between items-center">
+                            <button class="px-3 py-1 border border-blue-700 text-blue-700 text-sm rounded font-medium hover:bg-blue-50 transition-colors resource-download">Download</button>
+                            <span><i class="fas fa-download"></i> 147</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-36 bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-chalkboard-teacher text-5xl text-blue-700"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-1">PFCC Teaching Slides</h3>
+                        <p class="text-sm text-gray-600 mb-2"><i class="fas fa-file-powerpoint text-blue-700 mr-1"></i> PowerPoint</p>
+                        <p class="text-sm mb-4">Educational slides for teaching PFCC concepts to healthcare teams.</p>
+                        <div class="flex justify-between items-center">
+                            <button class="px-3 py-1 border border-blue-700 text-blue-700 text-sm rounded font-medium hover:bg-blue-50 transition-colors resource-download">Download</button>
+                            <span><i class="fas fa-download"></i> 318</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold text-blue-800 mb-4">Research Publications</h3>
+                <ul class="divide-y">
+                    <li class="py-4">
+                        <div class="flex">
+                            <i class="fas fa-file-alt text-blue-700 mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-medium mb-1">Chen, S., et al. (2023). "Implementation of Patient and Family-Centered Care at Bronson Methodist Hospital: A 10-Year Follow-up Study."</p>
+                                <p class="text-sm text-gray-600">Journal of Healthcare Quality, 45(3), 142-153.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="py-4">
+                        <div class="flex">
+                            <i class="fas fa-file-alt text-blue-700 mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-medium mb-1">Johnson, R., & Williams, T. (2022). "The Economic Impact of PFCC Implementation: The Bronson Case Study."</p>
+                                <p class="text-sm text-gray-600">Healthcare Financial Management, 76(2), 78-89.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="py-4">
+                        <div class="flex">
+                            <i class="fas fa-file-alt text-blue-700 mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-medium mb-1">Kaur, A., et al. (2023). "Culturally Adapted Patient and Family-Centered Care: Lessons from Southeast Asia."</p>
+                                <p class="text-sm text-gray-600">Journal of Transcultural Nursing, 34(1), 22-31.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="py-4">
+                        <div class="flex">
+                            <i class="fas fa-file-alt text-blue-700 mt-1 mr-3"></i>
+                            <div>
+                                <p class="font-medium mb-1">Smith, J., & Ramirez, M. (2022). "Family Presence During Resuscitation: A Systematic Review."</p>
+                                <p class="text-sm text-gray-600">Journal of Emergency Nursing, 48(4), 412-425.</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Interactive Game Section -->
+        <section id="game" class="mb-16" style="display:none;">
+            <h2 class="text-2xl font-bold text-blue-800 mb-4">Interactive PFCC Scenario Game</h2>
+            <p class="mb-6">Apply PFCC principles in realistic patient scenarios. Make choices and reflect on your approach.</p>
+            
+            <div id="game-container" class="game-container bg-white rounded-lg shadow-md p-6">
+                <div id="level-intro">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-4">Home Visit Scenario</h3>
+                    <p class="mb-4">You are visiting Fatima, a 45-year-old woman with type 2 diabetes, in her home for a follow-up assessment.</p>
+                    <p class="mb-4">Fatima has been struggling with medication adherence. She lives with her husband and two teenage children.</p>
+                    <button id="start-scenario" class="px-4 py-2 bg-blue-700 text-white rounded font-medium hover:bg-blue-800 transition-colors">Start Scenario</button>
+                </div>
+                
+                <div id="scenario-content" class="scenario-container" style="display:none;">
+                    <h3 id="scenario-stage-title" class="text-xl font-semibold text-blue-800 mb-4">Introduction</h3>
+                    <p id="scenario-prompt" class="mb-6">How do you begin your conversation with Fatima?</p>
+                    
+                    <div id="scenario-choices" class="space-y-2 mb-6">
+                        <button class="choice-btn" data-choice="medical">Let's check your blood glucose readings from the past week.</button>
+                        <button class="choice-btn" data-choice="open">How have things been going for you since our last visit?</button>
+                        <button class="choice-btn" data-choice="social">How are you and your family doing today?</button>
+                    </div>
+                    
+                    <div id="scenario-feedback" class="feedback-container"></div>
+                    
+                    <div id="scenario-continue" class="mt-4" style="display:none;">
+                        <button class="px-4 py-2 bg-blue-700 text-white rounded font-medium hover:bg-blue-800 transition-colors">Continue</button>
+                    </div>
+                </div>
+                
+                <div id="reflection-container" class="reflection-container">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-4">Reflection</h3>
+                    <p class="mb-2">Take a moment to reflect on your choices in this scenario.</p>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                        <h4 
