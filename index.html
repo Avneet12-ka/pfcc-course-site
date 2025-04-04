@@ -1749,4 +1749,61 @@
                     <p class="mb-2">Take a moment to reflect on your choices in this scenario.</p>
                     
                     <div class="bg-blue-50 p-4 rounded-lg mb-4">
-                        <h4 
+                        <h4 function showSection(sectionId) {
+    // Hide all content sections (Corrected Selector)
+    // This looks for <section> elements that have an 'id' attribute and are direct children of the main container div
+    const sections = document.querySelectorAll('.container.mx-auto.px-4.py-8 > section[id]');
+    sections.forEach(section => {
+        section.style.display = 'none';
+        section.classList.remove('active');
+    });
+
+    // Show the target section
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+        targetSection.style.display = 'block';
+        targetSection.classList.add('active');
+    } else {
+        console.error("Section with ID '" + sectionId + "' not found!"); // Error if ID is wrong
+    }
+
+    // Update active state for navigation links
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('onclick') && link.getAttribute('onclick').includes("showSection('" + sectionId + "')")) {
+            link.classList.add('active');
+        }
+    });
+
+    // Scroll to the top of the content area (optional)
+    const container = document.querySelector('.container.mx-auto.px-4.py-8');
+    if (container) {
+         window.scrollTo({ top: container.offsetTop - 80, behavior: 'smooth' }); // Adjust -80 if nav height is different
+    } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Optionally update progress - Add your updateProgressBar() call here if needed
+    // updateProgressBar();
+}
+
+// Make sure the initial section (home) is shown on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const initialSectionId = window.location.hash.substring(1);
+    // Use a default list of known valid section IDs
+    const validSectionIds = ['home', 'lectures', 'case-studies', 'quizzes', 'resources', 'game'];
+    
+    if (initialSectionId && validSectionIds.includes(initialSectionId)) {
+        const sectionExists = document.getElementById(initialSectionId);
+        if (sectionExists) {
+            showSection(initialSectionId);
+        } else {
+             showSection('home'); // Should not happen if ID is in valid list, but fallback
+        }
+    } else {
+        showSection('home'); // Show home section by default if no valid hash
+    }
+    // Initialize other things if needed, like progress tracking
+    // initializeProgressTracking();
+});
